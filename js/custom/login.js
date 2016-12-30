@@ -30,7 +30,7 @@ app.controller('myCtrl',function($scope,$http) {
                     setCookie("user_id",res.response.data._id)
                     window.location.href = "index.html"
                 }else{
-                    dhx_alert("登录失败，请重试！")
+                    dhx_alert(res.response.return_code )
                 }
             })
         }
