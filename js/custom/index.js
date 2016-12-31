@@ -16,7 +16,7 @@ app.controller('myCtrl',function($scope,$http){
 
     function init(){
         $scope.login_name = localStorage.getItem("login_name");
-        if(localStorage.getItem("token") == "undefined"||localStorage.getItem("token")==""){
+        if(localStorage.getItem("token") == "undefined"||localStorage.getItem("token")==""||localStorage.getItem("token")==null){
             window.location.href = "login.html"
         }else{
             create();
@@ -27,27 +27,28 @@ app.controller('myCtrl',function($scope,$http){
             myTabbar = new dhtmlXTabBar({
                 parent:"tabbarObj",
                 tabs:[
-                    {id:"placeholder",text:'',width:190},
-                    {id:"business",text:'出差信息',width:190},
-                    {id:"infor_gather",text:"情报搜集",width:190},
-                    {id:"infor_guide",text:"信息指南",width:190},
-                    {id:"self_infor",text:"个人中心",width:190},
-                    {id:"about_us",text:"关于我们",width:190},
-                    {id:"feedback",text:"意见反馈",width:190},
-                    {id:"notice",text:"通知公告",width:190}
+                    {id:"placeholder",text:'',width:160},
+                    {id:"business",text:'出差信息',width:160},
+                    {id:"infor_gather",text:"情报搜集",width:160},
+                    {id:"infor_guide",text:"信息指南",width:160},
+                    {id:"self_infor",text:"个人中心",width:160},
+                    {id:"about_us",text:"关于我们",width:160},
+                    {id:"feedback",text:"意见反馈",width:160},
+                    {id:"notice",text:"通知公告",width:160}
                 ]
             });
         //导航栏的分区
             mySidebar_1 = myTabbar.tabs("business").attachSidebar({
-                width:190,
+                width:160,
                 icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                 json: "dhtmlxSuite/samples/dhtmlxSidebar/common/business.json",
                 onload: function() {
                     mySidebar_1.cells("business_list").attachURL("business/business_list.html");
+                    mySidebar_1.cells("add_business").attachURL("business/business_list.html");
                 }
             });
             mySidebar_2 = myTabbar.tabs("infor_gather").attachSidebar({
-                width:190,
+                width:160,
                 icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                 json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_gather.json",
                 onload: function() {
@@ -63,7 +64,7 @@ app.controller('myCtrl',function($scope,$http){
                 }
             });
             mySidebar_3 = myTabbar.tabs("infor_guide").attachSidebar({
-                width:190,
+                width:160,
                 icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                 json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_guide.json",
                 onload: function() {
@@ -71,7 +72,7 @@ app.controller('myCtrl',function($scope,$http){
                 }
             });
             mySidebar_4 = myTabbar.tabs("self_infor").attachSidebar({
-                width:190,
+                width:160,
                 icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                 json: "dhtmlxSuite/samples/dhtmlxSidebar/common/self_infor.json",
                 onload: function() {
@@ -79,7 +80,7 @@ app.controller('myCtrl',function($scope,$http){
                 }
             });
             mySidebar_5 = myTabbar.tabs("about_us").attachSidebar({
-                width:190,
+                width:160,
                 icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                 json: "dhtmlxSuite/samples/dhtmlxSidebar/common/about_us.json",
                 onload: function() {
@@ -87,7 +88,7 @@ app.controller('myCtrl',function($scope,$http){
                 }
             });
             mySidebar_6 = myTabbar.tabs("feedback").attachSidebar({
-                width:190,
+                width:160,
                 icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                 json: "dhtmlxSuite/samples/dhtmlxSidebar/common/feedback.json",
                 onload: function() {
@@ -95,7 +96,7 @@ app.controller('myCtrl',function($scope,$http){
                 }
             });
             mySidebar_7 = myTabbar.tabs("notice").attachSidebar({
-                width:190,
+                width:160,
                 icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                 json: "dhtmlxSuite/samples/dhtmlxSidebar/common/notice.json",
                 onload: function() {
