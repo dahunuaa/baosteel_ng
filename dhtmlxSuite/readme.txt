@@ -1,3 +1,5 @@
-dhtmlxSuite v.5.0 Standard edition
+0、搜索时人数可以选择
 
-(c) Dinamenta, UAB.
+1、添加出差任务是添加时间插件
+
+2、搜索的时候可以选择出差开始和结束时间

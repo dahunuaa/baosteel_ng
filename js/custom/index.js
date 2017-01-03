@@ -31,7 +31,7 @@ app.controller('myCtrl', function($scope,$http){
                 myTabbar = new dhtmlXTabBar({
                     parent: "tabbarObj",
                     tabs: [
-                        {id: "placeholder", text: '', width: 160},
+                        {id: "placeholder", text: '', active:0 ,width: 160},
                         {id: "business", text: '出差信息',active:1, width: 160},
                         {id: "infor_gather", text: "情报搜集", width: 160},
                         {id: "infor_guide", text: "信息指南", width: 160},

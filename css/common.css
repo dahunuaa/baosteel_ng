@@ -62,6 +62,7 @@ div#test{
 }
 .kkpager{
     width: 1150px;
+    margin-bottom: 20px;
     border: 1px solid #dfdfdf;
     border-top: none;
     background: #fafafa;

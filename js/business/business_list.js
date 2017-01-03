@@ -24,27 +24,28 @@ app.controller('myCtrl', function($scope,$http) {
             //建页
             myGrid = new dhtmlXGridObject('gridbox');
             myGrid.setImagePath("../dhtmlxSuite/sources/dhtmlxGrid/codebase/imgs/");//表格图标路径
-            myGrid.setHeader("编辑人,出差人员,人数,出差缘由,出差地,编辑时间,出差开始时间,结束时间,备注");//设置表头
-            myGrid.attachHeader("<input class='search' type='text' id='parame_a'>," +
-                "<input class='search' type='text' id='parame_a'>," +
-                "<input class='search' type='text' id='parame_a'>," +
-                "<input class='search' type='text' id='parame_b'>," +
-                "<input class='search' type='text' id='parame_c'>," +
-                "<input class='search' type='text' id='parame_c'>," +
-                "<input class='search' type='text' id='parame_c'>," +
-                "<input class='search' type='text' id='parame_c'>," +
+            myGrid.setHeader("编辑人,出差人员,人数,出差缘由,出差地,出差开始时间,结束时间,编辑时间,详情,评论");//设置表头
+            myGrid.attachHeader("<input class='search' style='width: 100px' type='text' id='parame_a'>," +
+                "<input class='search' style='width: 120px' type='text' id='parame_b'>," +
+                "<input class='search' style='width: 40px' type='text' id='parame_c'>," +
+                "<input class='search' style='width: 80px' type='text' id='parame_d'>," +
+                "<input class='search' style='width: 80px' type='text' id='parame_e'>," +
+                "<input class='search' style='width: 90px' type='text' id='parame_f'>," +
+                "<input class='search' style='width: 90px' type='text' id='parame_g'>," +
+                "<input class='search' style='width: 130px' type='text' id='parame_h'>," +
+                "&nbsp;"+
                 "&nbsp;");
-            myGrid.setInitWidths("130,130,100,130,130,130,130,130,200");//设置表格初始宽度
-            myGrid.setColAlign("left,left,left,left,left,left,left,left,left");//数据显示位置
-            myGrid.setColTypes("ch,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
+            myGrid.setInitWidths("130,200,70,110,100,130,130,160,65,65");//设置表格初始宽度
+            myGrid.setColAlign("left,left,left,left,left,left,left,left,left,left");//数据显示位置
+            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
             //myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
             myGrid.enableAutoWidth(true);
             myGrid.init();
 
             myGridjiazai(1);//加载数据
-            myCalendar = new dhtmlXCalendarObject(["web_user_clear_star","web_user_clear_end","web_user_dim_star","web_user_dim_end"]);//时间插件绑定
+            myCalendar = new dhtmlXCalendarObject(["parame_f","parame_g"]);//时间插件绑定
             dhtmlXCalendarObject.prototype.langData["chinese"] = {
-                dateformat: "%Y-%m-%d %H:%i:%s",
+                dateformat: "%Y-%m-%d",
                 enableTime: true,
                 monthesFNames: [
                     "一月", "二月", "三月", "四月", "五月", "六月", "七月",
@@ -74,18 +75,27 @@ app.controller('myCtrl', function($scope,$http) {
     }
 
     function myGridjiazai(p){
-        // if($scope.so_name == undefined){
-        //     $scope.so_name = ""
-        // }if($scope.so_email == undefined){
-        //     $scope.so_email = ""
-        // }if($scope.so_mobile == undefined) {
-        //     $scope.so_mobile = ""
-        // }
+        if($scope.so_edit_name == undefined){
+            $scope.so_edit_name = ""
+        }if($scope.so_bus_name == undefined){
+            $scope.so_bus_name = ""
+        }if($scope.so_bus_num == undefined) {
+            $scope.so_bus_num = ""
+        }if($scope.so_bus_reason == undefined){
+            $scope.so_bus_reason = ""
+        }if($scope.so_bus_place == undefined){
+            $scope.so_bus_place = ""
+        }
         $http.get(basePath+get_url+"access_token="+localStorage.getItem("token")+
-            "&page_size=10")
+            "&add_user_name^="+$scope.so_edit_name+
+            "&business_staff^="+$scope.so_bus_name+
+            "&business_num^="+$scope.so_bus_num+
+            "&business_reason^="+$scope.so_bus_reason+
+            "&business_place^="+$scope.so_bus_place+
+            "&page_size=20"+
+            "&page="+p)
             .success(function(res){
                 if(res.response.success == 1){
-                    dhx_alert("111")
                     myGrid.clearAll();
                     $scope.pager = res.response.pager;
                     $scope.location_data = res.response.data;
@@ -114,16 +124,16 @@ app.controller('myCtrl', function($scope,$http) {
                         //    get_data[i].status = "无效"
                         //}
                         myGrid.addRow(str,[
-                            get_data[i].add_user_id,
+                            get_data[i].add_user_name,
                             get_data[i].business_staff,
-                            get_data[i].staff_num,
+                            get_data[i].business_num,
                             get_data[i].business_reason,
                             get_data[i].business_place,
-                            get_data[i].add_time,
                             get_data[i].begin_time,
                             get_data[i].end_time,
-                            get_data[i].remark,
-                            "<span style='margin: 0;padding: 0;font-size: 24px' class='icon-ios-trash' id='del'></span>"
+                            get_data[i].add_time,
+                            "<span style='margin: 0;padding: 0;font-size: 30px' class='icon-ios-eye' id='detail'></span>",
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='comment'></div>"
                         ],i);
 
 
@@ -179,17 +189,23 @@ app.controller('myCtrl', function($scope,$http) {
 
 
     function myGridjiazai2(p){
-        if($scope.so_name == undefined){
-            $scope.so_name = ""
-        }if($scope.so_email == undefined){
-            $scope.so_email = ""
-        }if($scope.so_mobile == undefined) {
-            $scope.so_mobile = ""
+        if($scope.so_edit_name == undefined){
+            $scope.so_edit_name = ""
+        }if($scope.so_bus_name == undefined){
+            $scope.so_bus_name = ""
+        }if($scope.so_bus_num == undefined) {
+            $scope.so_bus_num = ""
+        }if($scope.so_bus_reason == undefined){
+            $scope.so_bus_reason = ""
+        }if($scope.so_bus_place == undefined){
+            $scope.so_bus_place = ""
         }
         $http.get(basePath+get_url+"access_token="+localStorage.getItem("token")+
-            "&name^="+$scope.so_name+
-            "&email^="+$scope.so_email+
-            "&mobile^="+$scope.so_mobile+
+            "&add_user_name^="+$scope.so_edit_name+
+            "&business_staff^="+$scope.so_bus_name+
+            "&business_num^="+$scope.so_bus_num+
+            "&business_reason^="+$scope.so_bus_reason+
+            "&business_place^="+$scope.so_bus_place+
             "&page_size=20"+
             "&page="+p)
             .success(function(res){
@@ -222,29 +238,28 @@ app.controller('myCtrl', function($scope,$http) {
                         //    get_data[i].status = "无效"
                         //}
                         myGrid.addRow(str,[
-                            get_data[i].add_user_id,
+                            get_data[i].add_user_name,
                             get_data[i].business_staff,
-                            get_data[i].staff_num,
+                            get_data[i].business_num,
                             get_data[i].business_reason,
                             get_data[i].business_place,
-                            get_data[i].add_time,
                             get_data[i].begin_time,
                             get_data[i].end_time,
-                            get_data[i].remark,
-                            "<span style='margin: 0;padding: 0;font-size: 24px' class='icon-ios-trash' id='del'></span>"
+                            get_data[i].add_time,
+                            "<span style='margin: 0;padding: 0;font-size: 24px' class='icon-ios-eye' id='detail'></span>",
+                            "<span style='margin: 10px 20px 30px 40px ;padding:10px 20px 30px 40px;font-size: 24px' class='icon-ios-compose' id='comment'></span>"
                         ],i);
 
 
                     }
                 }else{
-
                     dhx_alert(res.response.return_code);
                 }
             })
     }
 
 //点击事件-行内删除
-    $("table").on('click','#del',function(){
+    $("table").on('click','#detail',function(){
         dhtmlx.confirm({
             type:"confirm",
             ok:"确定",
@@ -394,9 +409,11 @@ app.controller('myCtrl', function($scope,$http) {
     //查
     $("input:text").bind("input propertychange",function(){
 
-        $scope.so_name=document.getElementById("parame_a").value;
-        $scope.so_email=document.getElementById("parame_b").value;
-        $scope.so_mobile=document.getElementById("parame_c").value;
+        $scope.so_edit_name=document.getElementById("parame_a").value;
+        $scope.so_bus_name=document.getElementById("parame_b").value;
+        $scope.so_bus_num=document.getElementById("parame_c").value;
+        $scope.so_bus_reason=document.getElementById("parame_d").value;
+        $scope.so_bus_place=document.getElementById("parame_e").value;
 
 
         myGrid.clearAll();
