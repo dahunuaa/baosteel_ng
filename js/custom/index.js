@@ -58,6 +58,7 @@ app.controller('myCtrl', function($scope,$http){
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_gather.json",
                     onload: function () {
                         mySidebar_2.cells("infor_gather_list").attachURL("infor_gather/inforgather_list.html");
+                        mySidebar_2.cells("add_infor_gather").attachURL("infor_gather/add_inforgathe.html");
                         mySidebar_2.cells("dongbei").attachURL("infor_gather/dongbei.html");
                         mySidebar_2.cells("xinan").attachURL("infor_gather/xinan.html");
                         mySidebar_2.cells("zhonghaiyou").attachURL("infor_gather/zhonghaiyou.html");
@@ -74,6 +75,7 @@ app.controller('myCtrl', function($scope,$http){
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_guide.json",
                     onload: function () {
                         mySidebar_3.cells("infor_guide_list").attachURL("inforguide/infor_guide_list.html");
+                        mySidebar_3.cells("add_infor_guide").attachURL("inforguide/add_infor_guide.html");
                     }
                 });
                 mySidebar_4 = myTabbar.tabs("self_infor").attachSidebar({
@@ -81,7 +83,11 @@ app.controller('myCtrl', function($scope,$http){
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/self_infor.json",
                     onload: function () {
-                        mySidebar_4.cells("recent").attachURL("selfinfor/self_infor.html");
+                        mySidebar_4.cells("self_infor").attachURL("selfinfor/self_infor.html");
+                        mySidebar_4.cells("self_business").attachURL("selfinfor/self_business.html");
+                        mySidebar_4.cells("self_inforgather").attachURL("selfinfor/self_inforgather.html");
+                        mySidebar_4.cells("self_inforguide").attachURL("selfinfor/self_inforguide.html");
+                        mySidebar_4.cells("changepsw").attachURL("selfinfor/changepsw.html");
                     }
                 });
                 mySidebar_5 = myTabbar.tabs("about_us").attachSidebar({
@@ -89,7 +95,7 @@ app.controller('myCtrl', function($scope,$http){
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/about_us.json",
                     onload: function () {
-                        mySidebar_5.cells("about_us").attachURL("about_us/web_user.html");
+                        mySidebar_5.cells("about_us").attachURL("about_us/about_baostell.html");
                     }
                 });
                 mySidebar_6 = myTabbar.tabs("feedback").attachSidebar({

@@ -32,7 +32,7 @@ app.controller('myCtrl', function($scope,$http) {
                 "<input class='search' style='width: 80px' type='text' id='parame_e'>," +
                 "<input class='search' style='width: 90px' type='text' id='parame_f'>," +
                 "<input class='search' style='width: 90px' type='text' id='parame_g'>," +
-                "<input class='search' style='width: 130px' type='text' id='parame_h'>," +
+                "&nbsp;" +
                 "&nbsp;"+
                 "&nbsp;");
             myGrid.setInitWidths("130,200,70,110,100,130,130,160,65,65");//设置表格初始宽度
@@ -43,6 +43,7 @@ app.controller('myCtrl', function($scope,$http) {
             myGrid.init();
 
             myGridjiazai(1);//加载数据
+
             myCalendar = new dhtmlXCalendarObject(["parame_f","parame_g"]);//时间插件绑定
             dhtmlXCalendarObject.prototype.langData["chinese"] = {
                 dateformat: "%Y-%m-%d",
@@ -63,13 +64,6 @@ app.controller('myCtrl', function($scope,$http) {
                 weekname: "周"
             };
             myCalendar.loadUserLanguage('chinese');//定义语言
-            //$("table").find('tr').find("input").each(function(index){
-            //    if(index == 1){
-            //        $(this).attr('id','heshan');
-            //        return false;
-            //    }
-            //})
-
 
         }
     }
@@ -86,12 +80,20 @@ app.controller('myCtrl', function($scope,$http) {
         }if($scope.so_bus_place == undefined){
             $scope.so_bus_place = ""
         }
+        // if($scope.start_time == undefined){
+        //     $scope.start_time = ""
+        // }if($scope.end_time == undefined){
+        //     $scope.end_time = ""
+        // }
+        // dhx_alert($scope.so_start_time)
         $http.get(basePath+get_url+"access_token="+localStorage.getItem("token")+
             "&add_user_name^="+$scope.so_edit_name+
             "&business_staff^="+$scope.so_bus_name+
             "&business_num^="+$scope.so_bus_num+
             "&business_reason^="+$scope.so_bus_reason+
             "&business_place^="+$scope.so_bus_place+
+            "&begin_time^="+$scope.so_start_time+
+            "&end_time^="+$scope.so_end_time+
             "&page_size=20"+
             "&page="+p)
             .success(function(res){
@@ -414,33 +416,32 @@ app.controller('myCtrl', function($scope,$http) {
         $scope.so_bus_num=document.getElementById("parame_c").value;
         $scope.so_bus_reason=document.getElementById("parame_d").value;
         $scope.so_bus_place=document.getElementById("parame_e").value;
-
+        $scope.so_start_time=document.getElementById("parame_f").value;
+        $scope.so_end_time=document.getElementById("parame_g").value;
 
         myGrid.clearAll();
         myGridjiazai(1);
         page_change(1);
 
     });
-    //开始时间查询@>=
-    $("#web_user_dim_star").blur(function(){
-        $scope.mobile=document.getElementById("mobile").value;
-        $scope.email=document.getElementById("email").value;
-        $scope.status=document.getElementById("status").value;
-
-        myGrid.clearAll();
-        myGridjiazai(1);
-        page_change(1)
-    });
-    //结束时间查询@<=
-    $("#web_user_dim_end").blur(function(){
-        $scope.mobile=document.getElementById("mobile").value;
-        $scope.email=document.getElementById("email").value;
-        $scope.status=document.getElementById("status").value;
-        $scope.start_time=document.getElementById("web_user_dim_star").value;
-        $scope.end_time=document.getElementById("web_user_dim_end").value;
-        myGrid.clearAll();
-        myGridjiazai(1);
-        page_change(1)
-    });
+    // //开始时间查询@>=
+    // $("#business_start_time").blur(function(){
+    //     $scope.start_time=document.getElementById("business_start_time").value;
+    //
+    //     myGrid.clearAll();
+    //     myGridjiazai(1);
+    //     page_change(1)
+    // });
+    // //结束时间查询@<=
+    // $("#business_endtime").blur(function(){
+    //     $scope.mobile=document.getElementById("mobile").value;
+    //     $scope.email=document.getElementById("email").value;
+    //     $scope.status=document.getElementById("status").value;
+    //     $scope.start_time=document.getElementById("web_user_dim_star").value;
+    //     $scope.end_time=document.getElementById("web_user_dim_end").value;
+    //     myGrid.clearAll();
+    //     myGridjiazai(1);
+    //     page_change(1)
+    // });
 
 });

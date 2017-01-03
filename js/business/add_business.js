@@ -30,6 +30,8 @@ app.controller('myCtrl',function($scope,$http){
     myCalendar.loadUserLanguage('chinese')
 
     $scope.submit = function(){
+        var star_time = document.getElementById("business_start_time").value
+        var end_time = document.getElementById("business_endtime").value
         if ($scope.business.staff==""||$scope.business.staff==undefined||$scope.business.staff==null){
             dhx_alert("请填写出差人员！")
         }else if($scope.business.num==""||$scope.business.num==undefined||$scope.business.num==null){
@@ -38,9 +40,9 @@ app.controller('myCtrl',function($scope,$http){
             dhx_alert("请填写出差地！")
         }else if($scope.business.reason==""||$scope.business.reason==undefined||$scope.business.reason==null){
             dhx_alert("请填写出差缘由！")
-        }else if($scope.business.starttime==""||$scope.business.starttime==undefined||$scope.business.starttime==null){
+        }else if(star_time==""||star_time==undefined||star_time==null){
             dhx_alert("请选择出差开始时间！")
-        }else if($scope.business.endtime==""||$scope.business.endtime==undefined||$scope.business.endtime==null){
+        }else if(end_time==""||end_time==undefined||end_time==null){
             dhx_alert("请选择出差结束时间！")
         }else{
             $http({
@@ -52,8 +54,8 @@ app.controller('myCtrl',function($scope,$http){
                     "business_num":$scope.business.num,
                     "business_place":$scope.business.place,
                     "business_reason":$scope.business.reason,
-                    "begin_time":$scope.business.starttime,
-                    "end_time":$scope.business.endtime,
+                    "begin_time":star_time,
+                    "end_time":end_time,
                     "remark":$scope.business.remark
                 }
             }).success(function(res){
