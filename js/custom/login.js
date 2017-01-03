@@ -26,7 +26,9 @@ app.controller('myCtrl',function($scope,$http) {
                 if(res.response.success ==1){
                     setCookie("token",res.response.data.token);
                     localStorage.setItem("login_name",res.response.data.login_name);
+                    localStorage.setItem("name",res.response.data.name);
                     localStorage.setItem("token",res.response.data.token);
+                    localStorage.setItem("scope",res.response.data.scope);
                     setCookie("user_id",res.response.data._id)
                     window.location.href = "index.html"
                 }else{
