@@ -17,6 +17,7 @@ app.controller('myCtrl', function($scope,$http){
         var mySidebar_5;
         var mySidebar_6;
         var mySidebar_7;
+        var mySidebar_8;
 
         function init() {
             $scope.login_name = localStorage.getItem("login_name");
@@ -42,6 +43,16 @@ app.controller('myCtrl', function($scope,$http){
                     ]
                 });
                 //导航栏的分区
+
+                mySidebar_8 = myTabbar.tabs("placeholder").attachSidebar({
+                    width: 160,
+                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
+                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/business.json",
+                    onload: function () {
+                        mySidebar_8.cells("business_list").attachURL("business/business_list.html");
+                        mySidebar_8.cells("add_business").attachURL("business/add_business.html");
+                    }
+                });
 
                 mySidebar_1 = myTabbar.tabs("business").attachSidebar({
                     width: 160,

@@ -6,7 +6,8 @@ app.controller('myCtrl',function($scope,$http){
 
     $scope.business = {};
     $scope.to_back = function(){
-        window.location.href="business_list.html"
+        window.location.href="business_list.html";
+        // window.location.reload();
     };
     myCalendar = new dhtmlXCalendarObject(["business_start_time","business_endtime"]);//时间插件绑定
     dhtmlXCalendarObject.prototype.langData["chinese"] = {

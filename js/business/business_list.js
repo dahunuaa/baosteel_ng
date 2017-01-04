@@ -134,7 +134,7 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].begin_time,
                             get_data[i].end_time,
                             get_data[i].add_time,
-                            "<span style='margin: 0;padding: 0;font-size: 30px' class='icon-ios-eye' id='detail'></span>",
+                            "<span style='margin: 0;padding: 0;font-size: 30px' class='icon-ios-eye' id='detail' ></span>",
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='comment'></div>"
                         ],i);
 
@@ -175,6 +175,7 @@ app.controller('myCtrl', function($scope,$http) {
                 }
             })
     }
+
     //刷新分页数据
     function page_change(p){
         if($scope.enable == true){
@@ -261,33 +262,43 @@ app.controller('myCtrl', function($scope,$http) {
     }
 
 //点击事件-行内删除
-    $("table").on('click','#detail',function(){
-        dhtmlx.confirm({
-            type:"confirm",
-            ok:"确定",
-            cancel:"取消",
-            text: "确认删除选中数据？",
-            callback: function(result){
-                if(result == true){
-                    $http.delete(basePath+del_url+"/"+$scope.this_row_id+"?"+"&access_token="+localStorage.getItem("token"))
-                        .success(function(res){
-                                if(res.response.success == 1){
-                                    dhx_alert("删除成功",function(){
-                                        myGrid.clearAll();
-                                        myGridjiazai(1);
-                                        page_change(1);
-                                        $scope.this_row_id = undefined
-                                    });
-                                }else{
-                                    dhx_alert(res.response.return_code)
-                                }
-                            }
-                        )
-                }else{
-                }
-            }
-        });
+//     $("table").on('click','#detail',function(){
+//         dhtmlx.confirm({
+//             type:"confirm",
+//             ok:"确定",
+//             cancel:"取消",
+//             text: "确认删除选中数据？",
+//             callback: function(result){
+//                 if(result == true){
+//                     $http.delete(basePath+del_url+"/"+$scope.this_row_id+"?"+"&access_token="+localStorage.getItem("token"))
+//                         .success(function(res){
+//                                 if(res.response.success == 1){
+//                                     dhx_alert("删除成功",function(){
+//                                         myGrid.clearAll();
+//                                         myGridjiazai(1);
+//                                         page_change(1);
+//                                         $scope.this_row_id = undefined
+//                                     });
+//                                 }else{
+//                                     dhx_alert(res.response.return_code)
+//                                 }
+//                             }
+//                         )
+//                 }else{
+//                 }
+//             }
+//         });
+//     });
+
+    //点击查看详情
+    $("table").on('click','#detail',function(){//$scope.this_row_id为当前行的_id
+        if($scope.this_row_id==undefined){
+            dhx_alert("未选中记录！")
+        }else {
+            window.location.href="../business/detail_business.html"
+        }
     });
+
 
 
     //增 数据

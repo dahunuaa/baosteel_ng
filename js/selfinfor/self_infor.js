@@ -7,7 +7,11 @@ app.controller('myCtrl',function($scope,$http){
 
     function init(){
         $scope.user_name = localStorage.getItem("name");
-        $scope.user_mobile = localStorage.getItem("login_name")
-        $scope.user_scope = localStorage.getItem("user_scope")
+        $scope.user_mobile = localStorage.getItem("mobile");
+        if(localStorage.getItem("scope")=="admin"){
+            $scope.user_scope ="管理员"
+        }else if(localStorage.getItem("scope")=="normal"){
+            $scope.user_scope ="普通用户"
+        }
     }
 });
