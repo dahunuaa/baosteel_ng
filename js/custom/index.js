@@ -32,12 +32,12 @@ app.controller('myCtrl', function($scope,$http){
                 myTabbar = new dhtmlXTabBar({
                     parent: "tabbarObj",
                     tabs: [
-                        {id: "placeholder", text: '', active:0 ,width: 160},
-                        {id: "business", text: '出差信息',active:1, width: 160},
+                        {id: "placeholder", text: '', active:1 ,width: 160,},
+                        {id: "business", text: '出差信息',active:1 , width: 160},
                         {id: "infor_gather", text: "情报搜集", width: 160},
-                        {id: "infor_guide", text: "信息指南", width: 160},
+                        {id: "infor_guide", text: "信息指南",width: 160},
                         {id: "self_infor", text: "个人中心", width: 160},
-                        {id: "about_us", text: "关于我们", width: 160},
+                        {id: "about_us", text: "关于我们",width: 160},
                         {id: "feedback", text: "意见反馈", width: 160},
                         {id: "notice", text: "通知公告", width: 160}
                     ]

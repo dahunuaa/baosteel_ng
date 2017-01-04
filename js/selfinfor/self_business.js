@@ -3,9 +3,7 @@ app.controller('myCtrl', function($scope,$http) {
 
     var get_url  ="api/v1.0/business?";//get数据接口
     var del_url  ="api/v1.0/business";//删除接口
-    var add_url  ="add_business.html";//点击新增跳转地址
-    var detail_url ="detail_business.html?";//点击修改跳转地址
-    // var detail_url = "detail_business.html";//点击查看详情
+    var edit_url ="edit_business.html?";//点击详情跳转地址
 
 
 
@@ -24,7 +22,7 @@ app.controller('myCtrl', function($scope,$http) {
             //建页
             myGrid = new dhtmlXGridObject('gridbox');
             myGrid.setImagePath("../dhtmlxSuite/sources/dhtmlxGrid/codebase/imgs/");//表格图标路径
-            myGrid.setHeader("编辑人,出差人员,人数,出差缘由,出差地,出差开始时间,结束时间,编辑时间,详情,评论");//设置表头
+            myGrid.setHeader("编辑人,出差人员,人数,出差缘由,出差地,出差开始时间,结束时间,编辑时间,修改,删除");//设置表头
             myGrid.attachHeader("<input class='search' style='width: 100px' type='text' id='parame_a'>," +
                 "<input class='search' style='width: 120px' type='text' id='parame_b'>," +
                 "<input class='search' style='width: 40px' type='text' id='parame_c'>," +
@@ -33,10 +31,10 @@ app.controller('myCtrl', function($scope,$http) {
                 "<input class='search' style='width: 90px' type='text' id='parame_f'>," +
                 "<input class='search' style='width: 90px' type='text' id='parame_g'>," +
                 "&nbsp;" +
-                "&nbsp;"+
+                "&nbsp;" +
                 "&nbsp;");
             myGrid.setInitWidths("130,200,70,110,100,130,130,160,65,65");//设置表格初始宽度
-            myGrid.setColAlign("left,left,left,left,left,left,left,left,left,left");//数据显示位置
+            myGrid.setColAlign("center,left,left,left,left,left,left,left,left,left");//数据显示位置
             myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
             //myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
             myGrid.enableAutoWidth(true);
@@ -87,6 +85,7 @@ app.controller('myCtrl', function($scope,$http) {
         // }
         // dhx_alert($scope.so_start_time)
         $http.get(basePath+get_url+"access_token="+localStorage.getItem("token")+
+            "&add_user_id^="+getCookie("user_id")+
             "&add_user_name^="+$scope.so_edit_name+
             "&business_staff^="+$scope.so_bus_name+
             "&business_num^="+$scope.so_bus_num+
@@ -134,8 +133,8 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].begin_time,
                             get_data[i].end_time,
                             get_data[i].add_time,
-                            "<span style='margin: 0;padding: 0;font-size: 30px' class='icon-ios-eye' id='detail' ></span>",
-                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='comment'></div>"
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='edit'></div>",
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>"
                         ],i);
 
 
@@ -204,11 +203,14 @@ app.controller('myCtrl', function($scope,$http) {
             $scope.so_bus_place = ""
         }
         $http.get(basePath+get_url+"access_token="+localStorage.getItem("token")+
+            "&add_user_id^="+getCookie("user_id")+
             "&add_user_name^="+$scope.so_edit_name+
             "&business_staff^="+$scope.so_bus_name+
             "&business_num^="+$scope.so_bus_num+
             "&business_reason^="+$scope.so_bus_reason+
             "&business_place^="+$scope.so_bus_place+
+            "&begin_time^="+$scope.so_start_time+
+            "&end_time^="+$scope.so_end_time+
             "&page_size=20"+
             "&page="+p)
             .success(function(res){
@@ -249,11 +251,9 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].begin_time,
                             get_data[i].end_time,
                             get_data[i].add_time,
-                            "<span style='margin: 0;padding: 0;font-size: 24px' class='icon-ios-eye' id='detail'></span>",
-                            "<span style='margin: 10px 20px 30px 40px ;padding:10px 20px 30px 40px;font-size: 24px' class='icon-ios-compose' id='comment'></span>"
+                            "<div style='margin: 10px 20px 30px 40px ;padding:10px 20px 30px 40px;font-size: 24px' class='icon-ios-compose' id='edit'></div>",
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>"
                         ],i);
-
-
                     }
                 }else{
                     dhx_alert(res.response.return_code);
@@ -291,20 +291,47 @@ app.controller('myCtrl', function($scope,$http) {
 //     });
 
     //点击查看详情
-    $("table").on('click','#detail',function(){//$scope.this_row_id为当前行的_id
+    $("table").on('click','#edit',function(){//$scope.this_row_id为当前行的_id
         if($scope.this_row_id==undefined){
             dhx_alert("未选中记录！")
         }else {
-            window.location.href=detail_url+$scope.this_row_id//页面间传值直接在window.location.href后面加上就行
+            window.location.href=edit_url+$scope.this_row_id//页面间传值直接在window.location.href后面加上就行
+        }
+    });
+    $("table").on('click','#delete',function(){
+        if($scope.this_row_id==undefined){
+            dhx_alert("未选中记录！")
+        }else {
+            dhtmlx.confirm({
+                type:"confirm",
+                ok:"确定",
+                cancel:"取消",
+                text: "确认删除选中数据？",
+                callback: function(result){
+                    if(result == true){
+                        $http.delete(basePath+del_url+"/"+$scope.this_row_id+"?"+"&access_token="+localStorage.getItem("token"))
+                            .success(function(res){
+                                    if(res.response.success == 1){
+                                        dhx_alert("删除成功",function(){
+                                            myGrid.clearAll();
+                                            myGridjiazai(1);
+                                            page_change(1);
+                                            $scope.this_row_id = undefined
+                                        });
+                                    }else{
+                                        dhx_alert(res.response.return_code)
+                                    }
+                                }
+                            )
+                    }else{
+                    }
+                }
+            });
         }
     });
 
 
 
-    //增 数据
-    $scope.add_business = function(){
-        window.location.href= add_url;
-    };
 
     //选中任何row列表
     myGrid._doClick=function(ev){
@@ -342,75 +369,75 @@ app.controller('myCtrl', function($scope,$http) {
         return this.doClick(el, fl, selMethod, false)
     };
     //删
-    $scope.del_data = function(){
-        for(var i=0;i<get_data.length;i++){
-            var id = get_data[i]._id;
-            if(myGrid.cellById(id,0).getValue() == 1){
-                $scope.selected.push(id);
-            }
-        }
-        if($scope.selected == ""){
-            if($scope.this_row_id == undefined){
-                dhx_alert("未选择任何数据")
-            }else{
-                dhtmlx.confirm({
-                    type:"confirm",
-                    ok:"确定",
-                    cancel:"取消",
-                    text: "确认删除选中数据？",
-                    callback: function(result){
-                        if(result == true){
-                            $http.delete(basePath+del_url+"/"+$scope.this_row_id+"?"+"&access_token="+localStorage.getItem("token"))
-                                .success(function(res){
-                                        if(res.response.success == 1){
-                                            dhx_alert("删除成功",function(){
-                                                myGrid.clearAll();
-                                                myGridjiazai(1);
-                                                page_change(1);
-                                                $scope.this_row_id = undefined
-                                            });
-                                        }else{
-                                            dhx_alert(res.response.return_code)
-                                        }
-                                    }
-                                )
-                        }else{
-                        }
-                    }
-                });
-
-
-            }
-        }else{
-            dhtmlx.confirm({
-                type:"confirm",
-                ok:"确定",
-                cancel:"取消",
-                text: "确认删除选中数据？",
-                callback: function(result){
-                    if(result == true){
-                        $http.delete(basePath+del_url+"?"+"access_token="+localStorage.getItem("token")+"&_ids="+JSON.stringify($scope.selected))
-                            .success(function(res){
-                                    if(res.response.success == 1){
-                                        myGrid.clearAll();
-                                        myGridjiazai(1);
-                                        page_change(1);
-                                        $scope.selected =[]
-                                    }else{
-                                        dhx_alert(res.response.return_code)
-                                    }
-                                }
-                            )
-                    }else{
-                        $scope.selected =[]
-                    }
-                }
-            });
-
-        }
-
-
-    };
+    // $scope.del_data = function(){
+    //     for(var i=0;i<get_data.length;i++){
+    //         var id = get_data[i]._id;
+    //         if(myGrid.cellById(id,0).getValue() == 1){
+    //             $scope.selected.push(id);
+    //         }
+    //     }
+    //     if($scope.selected == ""){
+    //         if($scope.this_row_id == undefined){
+    //             dhx_alert("未选择任何数据")
+    //         }else{
+    //             dhtmlx.confirm({
+    //                 type:"confirm",
+    //                 ok:"确定",
+    //                 cancel:"取消",
+    //                 text: "确认删除选中数据？",
+    //                 callback: function(result){
+    //                     if(result == true){
+    //                         $http.delete(basePath+del_url+"/"+$scope.this_row_id+"?"+"&access_token="+localStorage.getItem("token"))
+    //                             .success(function(res){
+    //                                     if(res.response.success == 1){
+    //                                         dhx_alert("删除成功",function(){
+    //                                             myGrid.clearAll();
+    //                                             myGridjiazai(1);
+    //                                             page_change(1);
+    //                                             $scope.this_row_id = undefined
+    //                                         });
+    //                                     }else{
+    //                                         dhx_alert(res.response.return_code)
+    //                                     }
+    //                                 }
+    //                             )
+    //                     }else{
+    //                     }
+    //                 }
+    //             });
+    //
+    //
+    //         }
+    //     }else{
+    //         dhtmlx.confirm({
+    //             type:"confirm",
+    //             ok:"确定",
+    //             cancel:"取消",
+    //             text: "确认删除选中数据？",
+    //             callback: function(result){
+    //                 if(result == true){
+    //                     $http.delete(basePath+del_url+"?"+"access_token="+localStorage.getItem("token")+"&_ids="+JSON.stringify($scope.selected))
+    //                         .success(function(res){
+    //                                 if(res.response.success == 1){
+    //                                     myGrid.clearAll();
+    //                                     myGridjiazai(1);
+    //                                     page_change(1);
+    //                                     $scope.selected =[]
+    //                                 }else{
+    //                                     dhx_alert(res.response.return_code)
+    //                                 }
+    //                             }
+    //                         )
+    //                 }else{
+    //                     $scope.selected =[]
+    //                 }
+    //             }
+    //         });
+    //
+    //     }
+    //
+    //
+    // };
     //改
     $scope.edit_data = function(){
         if($scope.this_row_id == undefined){

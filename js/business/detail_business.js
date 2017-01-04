@@ -9,7 +9,7 @@ app.controller('myCtrl',function($scope,$http){
         $scope._id = back;
 
     }
-    init()
+    init();
 
     function init(){
         if(localStorage.getItem("token") == undefined||localStorage.getItem("token")==null){
