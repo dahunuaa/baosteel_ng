@@ -34,31 +34,62 @@ app.controller('myCtrl', function($scope,$http) {
     $scope.back = function(){
         window.location.href = "self_business.html"
     };
+
+    $scope.src_start_time=document.getElementById("start_time").value;
+    $scope.src_end_time=document.getElementById("end_time").value;
+
 //确认修改
     $scope.do_edit = function(){
+        // dhx_alert(document.getElementById("start_time").value)
+        if(document.getElementById("start_time").value>document.getElementById("end_time").value){
+            dhx_alert("结束时间不得早于结束时间！")
+        }else{
+            $http({
+                method:'put',
+                url:basePath+"api/v1.0/business/"+$scope._id,
+                params:{"access_token":localStorage.getItem("token"),
+                    "business_staff":$scope.src_bus_staff,
+                    "business_num":$scope.src_bus_num,
+                    "business_reason":$scope.src_bus_reason,
+                    "business_place":$scope.src_bus_place,
+                    "begin_time":document.getElementById("start_time").value,
+                    "end_time":document.getElementById("end_time").value,
+                    "remark":$scope.src_remark}
+            }).success(function(res){
+                if(res.response.success == 1){
+                    dhx_alert("修改成功",function(){
+                        window.location.href = "self_business.html"
+                    })
 
-        $http({
-            method:'put',
-            url:basePath+"api/v1.0/business/"+$scope._id,
-            params:{"access_token":localStorage.getItem("token"),
-                "business_staff":$scope.src_bus_staff,
-                "business_num":$scope.src_bus_num,
-                "business_reason":$scope.src_bus_reason,
-                "business_place":$scope.src_bus_place,
-                "begin_time":$scope.src_start_time,
-                "end_time":$scope.src_end_time,
-                "remark":$scope.src_remark}
-        }).success(function(res){
-            if(res.response.success == 1){
-                dhx_alert("修改成功",function(){
-                    window.location.href = "self_business.html"
-                })
+                }else{
+                    dhx_alert(res.response.return_code)
+                }
+            })
+        }
 
-            }else{
-                dhx_alert(res.response.return_code)
-            }
-        })
-    }
+    };
+
+
+    myCalendar = new dhtmlXCalendarObject(["start_time","end_time"]);//时间插件绑定
+    dhtmlXCalendarObject.prototype.langData["chinese"] = {
+        dateformat: "%Y-%m-%d",
+        enableTime: true,
+        monthesFNames: [
+            "一月", "二月", "三月", "四月", "五月", "六月", "七月",
+            "八月", "九月", "十月", "十一月", "十二月"
+        ],
+        monthesSNames: [
+            "一月", "二月", "三月", "四月", "五月", "六月", "七月",
+            "八月", "九月", "十月", "十一月", "十二月"
+        ],
+        daysFNames: [
+            "周一", "周二", "周三", "周四", "周五", "周六", "周日"
+        ],
+        daysSNames: ["一", "二", "三", "四", "五", "六", "日"],
+        weekstart: 7,
+        weekname: "周"
+    };
+    myCalendar.loadUserLanguage('chinese');//定义语言
 
 });
 

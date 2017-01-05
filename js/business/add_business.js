@@ -45,6 +45,8 @@ app.controller('myCtrl',function($scope,$http){
             dhx_alert("请选择出差开始时间！")
         }else if(end_time==""||end_time==undefined||end_time==null){
             dhx_alert("请选择出差结束时间！")
+        }else if(star_time>end_time){
+            dhx_alert("结束时间不得早于结束时间！")
         }else{
             $http({
                 method:'post',
