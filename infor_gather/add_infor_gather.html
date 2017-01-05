@@ -26,43 +26,35 @@
     <script type="text/javascript" src="../dhtmlxSuite/sources/dhtmlxGrid/codebase/excells/dhtmlxgrid_excell_cntr.js"></script>
     <script type="text/javascript" src="../js/plugins/basePath.js"></script>
 
-    <script type="text/javascript" src="../js/business/add_business.js"></script>
+    <script type="text/javascript" src="../js/infor_gather/add_infor_gather.js"></script>
     <script type="text/javascript" src="../js/plugins/kkpager.min.js"></script>
 
 </head>
 
 <body  ng-app="myApp" ng-controller="myCtrl" >
-<h3 style="width: 100%;text-align: center">新建情报搜集</h3>
+<h3 style="width: 100%;text-align: center">新建出差任务</h3>
 
 <div class="public">
     <table class="tab_user">
         <tr class="td_left">
-            <td class="td_left"><span class="red">*</span></span>出差人员</td>
-            <td><input  style="width: 300px" type="text" ng-model="business.staff"  id="business_staff" placeholder="每个人之间用空格隔开（必填）"></td>
+            <td class="td_left"><span class="red">*</span></span>标题</td>
+            <td><input  style="width: 300px" type="text" ng-model="inforgather.title"  id="inforgather_title" placeholder="输入情报搜集标题"></td>
         </tr>
         <tr class="td_left">
-            <td class="td_left"><span class="red">*</span></span>出差总人数</td>
-            <td><input  style="width: 300px" type="text" ng-model="business.num"  id="business_num" placeholder="请填写出差总人数（必填）"></td>
+            <td class="td_left"><span class="red">*</span></span>地址</td>
+            <td><input  style="width: 300px" type="text" ng-model="inforgather.address"  id="inforgather_address" placeholder="请输入地址"></td>
         </tr>
         <tr>
-            <td class="td_left"><span class="red">*</span>出差地</td>
-            <td><input  type="text" style="width: 300px;border-radius: 5px;height: 3vh;border:1px solid #ccc ;"  ng-model="business.place" placeholder="请填写出差地（必填）"></td>
+            <td class="td_left"><span class="red">*</span>油田区块</td>
+            <td><input  type="text" style="width: 300px;border-radius: 5px;height: 3vh;border:1px solid #ccc ;"  ng-model="inforgather.area" placeholder="请选择油田区块"></td>
         </tr>
         <tr>
-            <td class="td_left"><span class="red">*</span>出差缘由</td>
-            <td><input style="width: 300px"  type="text"  ng-model="business.reason" id="business_reason" placeholder="请填写出差事由（必填）"></td>
+            <td class="td_left"><span class="red">*</span>油田</td>
+            <td><input style="width: 300px"  type="text"  ng-model="inforgather.oilfield" id="inforgather_oilfield" placeholder="请填写油田"></td>
         </tr>
         <tr>
-            <td class="td_left"><span class="red">*</span>开始时间</td>
-            <td><input style="width: 200px"  type="text"  ng-model="business.starttime" id="business_start_time"placeholder="请选择出差开始时间（必选）" ></td>
-        </tr>
-        <tr>
-            <td class="td_left"><span class="red">*</span>结束时间</td>
-            <td><input style="width: 200px"  type="text"  ng-model="business.endtime" id="business_endtime" placeholder="请选择出差结束时间（必选）"></td>
-        </tr>
-        <tr>
-            <td class="td_left">备注</td>
-            <td><input style="width: 400px"  type="text"  ng-model="business.remark" id="business_remark" placeholder="添加备注（非必填）"></td>
+            <td class="td_left"><span class="red">*</span>正文</td>
+            <td><input style="width: 200px"  type="text"  ng-model="inforgather.text" id="inforgather_text"placeholder="请填写情报搜集详情" ></td>
         </tr>
     </table>
     <button class="btn_blue" ng-click="submit()">提交</button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

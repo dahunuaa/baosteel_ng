@@ -107,7 +107,7 @@ app.controller('myCtrl', function($scope,$http){
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_guide.json",
                     onload: function () {
-                        mySidebar_3.cells("infor_guide_list").attachURL("inforguide/infor_guide_list.html");
+                        mySidebar_3.cells("infor_guide_list").attachURL("infor_guide/infor_guide_list.html");
                         // mySidebar_3.cells("add_infor_guide").attachURL("inforguide/add_infor_guide.html");
                     }
                 });
