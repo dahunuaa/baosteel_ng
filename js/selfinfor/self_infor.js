@@ -12,6 +12,8 @@ app.controller('myCtrl',function($scope,$http){
             $scope.user_scope ="管理员"
         }else if(localStorage.getItem("scope")=="normal"){
             $scope.user_scope ="普通用户"
+        }else if(localStorage.getItem("scope")=="backend"){
+            $scope.user_scope ="后端用户"
         }
     }
 });

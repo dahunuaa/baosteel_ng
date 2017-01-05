@@ -29,8 +29,8 @@ app.controller('myCtrl',function($scope,$http) {
                     localStorage.setItem("name",res.response.data.name);
                     localStorage.setItem("token",res.response.data.token);
                     localStorage.setItem("scope",res.response.data.scope);
-                    localStorage.setItem("mobile",res.response.data.mobile)
-                    setCookie("user_id",res.response.data._id)
+                    localStorage.setItem("mobile",res.response.data.mobile);
+                    setCookie("user_id",res.response.data._id);
                     window.location.href = "index.html"
                 }else{
                     dhx_alert(res.response.return_code )

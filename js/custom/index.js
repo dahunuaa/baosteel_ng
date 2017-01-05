@@ -20,7 +20,7 @@ app.controller('myCtrl', function($scope,$http){
         var mySidebar_8;
 
         function init() {
-            $scope.login_name = localStorage.getItem("login_name");
+            $scope.name = localStorage.getItem("name");
             if (localStorage.getItem("token") == "undefined" || localStorage.getItem("token") == "" || localStorage.getItem("token") == null) {
                 window.location.href = "login.html"
             } else {
@@ -50,7 +50,6 @@ app.controller('myCtrl', function($scope,$http){
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/business.json",
                     onload: function () {
                         mySidebar_8.cells("business_list").attachURL("business/business_list.html");
-                        mySidebar_8.cells("add_business").attachURL("business/add_business.html");
                     }
                 });
 
@@ -60,7 +59,6 @@ app.controller('myCtrl', function($scope,$http){
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/business.json",
                     onload: function () {
                         mySidebar_1.cells("business_list").attachURL("business/business_list.html");
-                        mySidebar_1.cells("add_business").attachURL("business/add_business.html");
                     }
                 });
                 mySidebar_2 = myTabbar.tabs("infor_gather").attachSidebar({
@@ -69,24 +67,48 @@ app.controller('myCtrl', function($scope,$http){
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_gather.json",
                     onload: function () {
                         mySidebar_2.cells("infor_gather_list").attachURL("infor_gather/inforgather_list.html");
+                        // mySidebar_2.cells("add_infor_gather").attachURL("infor_gather/add_inforgathe.html");
+                        // mySidebar_2.cells("dongbei").attachURL("infor_gather/dongbei.html");
+                        // mySidebar_2.cells("xinan").attachURL("infor_gather/xinan.html");
+                        // mySidebar_2.cells("zhonghaiyou").attachURL("infor_gather/zhonghaiyou.html");
+                        // mySidebar_2.cells("huabei").attachURL("infor_gather/huabei.html");
+                        // mySidebar_2.cells("huazhong").attachURL("infor_gather/huazhong.html");
+                        // mySidebar_2.cells("huadong").attachURL("infor_gather/huadong.html");
+                        // mySidebar_2.cells("xinjiang").attachURL("infor_gather/xinjiang.html");
+                        // mySidebar_2.cells("xibei").attachURL("infor_gather/xibei.html");
+                    }
+                });
+                mySidebar_2.attachEvent("onSelect",function(id){
+                    if( id =="infor_gather_list"){
+                        mySidebar_2.cells("infor_gather_list").attachURL("infor_gather/inforgather_list.html");
+                    }else if(id =="add_infor_gather"){
                         mySidebar_2.cells("add_infor_gather").attachURL("infor_gather/add_inforgathe.html");
+                    }else if(id =="dongbei"){
                         mySidebar_2.cells("dongbei").attachURL("infor_gather/dongbei.html");
+                    }else if(id =="xinan"){
                         mySidebar_2.cells("xinan").attachURL("infor_gather/xinan.html");
+                    }else if(id =="zhonghaiyou"){
                         mySidebar_2.cells("zhonghaiyou").attachURL("infor_gather/zhonghaiyou.html");
+                    }else if(id =="huabei"){
                         mySidebar_2.cells("huabei").attachURL("infor_gather/huabei.html");
+                    }else if(id =="huazhong"){
                         mySidebar_2.cells("huazhong").attachURL("infor_gather/huazhong.html");
+                    }else if(id =="huadong"){
                         mySidebar_2.cells("huadong").attachURL("infor_gather/huadong.html");
+                    }else if(id =="xinjiang"){
                         mySidebar_2.cells("xinjiang").attachURL("infor_gather/xinjiang.html");
+                    }else if(id =="xibei"){
                         mySidebar_2.cells("xibei").attachURL("infor_gather/xibei.html");
                     }
                 });
+
                 mySidebar_3 = myTabbar.tabs("infor_guide").attachSidebar({
                     width: 160,
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_guide.json",
                     onload: function () {
                         mySidebar_3.cells("infor_guide_list").attachURL("inforguide/infor_guide_list.html");
-                        mySidebar_3.cells("add_infor_guide").attachURL("inforguide/add_infor_guide.html");
+                        // mySidebar_3.cells("add_infor_guide").attachURL("inforguide/add_infor_guide.html");
                     }
                 });
                 mySidebar_4 = myTabbar.tabs("self_infor").attachSidebar({
@@ -94,13 +116,27 @@ app.controller('myCtrl', function($scope,$http){
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/self_infor.json",
                     onload: function () {
-                        mySidebar_4.cells("self_infor").attachURL("selfinfor/self_infor.html");
                         mySidebar_4.cells("self_business").attachURL("selfinfor/self_business.html");
+                        // mySidebar_4.cells("self_infor").attachURL("selfinfor/self_infor.html");
+                        // mySidebar_4.cells("self_inforgather").attachURL("selfinfor/self_inforgather.html");
+                        // mySidebar_4.cells("self_inforguide").attachURL("selfinfor/self_inforguide.html");
+                        // mySidebar_4.cells("changepsw").attachURL("selfinfor/changepsw.html");
+                    }
+                });
+                mySidebar_4.attachEvent("onSelect",function(id){
+                    if(id =="self_infor"){
+                        mySidebar_4.cells("self_infor").attachURL("selfinfor/self_infor.html");
+                    }else if (id =="self_business"){
+                        mySidebar_4.cells("self_business").attachURL("selfinfor/self_business.html");
+                    }else if (id =="self_inforgather"){
                         mySidebar_4.cells("self_inforgather").attachURL("selfinfor/self_inforgather.html");
+                    }else if (id =="self_inforguide"){
                         mySidebar_4.cells("self_inforguide").attachURL("selfinfor/self_inforguide.html");
+                    }else if (id =="changepsw"){
                         mySidebar_4.cells("changepsw").attachURL("selfinfor/changepsw.html");
                     }
                 });
+
                 mySidebar_5 = myTabbar.tabs("about_us").attachSidebar({
                     width: 160,
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",

@@ -22,7 +22,7 @@ app.controller('myCtrl', function($scope,$http) {
             //建页
             myGrid = new dhtmlXGridObject('gridbox');
             myGrid.setImagePath("../dhtmlxSuite/sources/dhtmlxGrid/codebase/imgs/");//表格图标路径
-            myGrid.setHeader("编辑人,出差人员,人数,出差缘由,出差地,出差开始时间,结束时间,编辑时间,修改,删除");//设置表头
+            myGrid.setHeader("编辑人,出差人员,人数,出差缘由,出差地,出差开始时间,结束时间,添加时间,最后编辑时间,修改,删除");//设置表头
             myGrid.attachHeader("<input class='search' style='width: 100px' type='text' id='parame_a'>," +
                 "<input class='search' style='width: 120px' type='text' id='parame_b'>," +
                 "<input class='search' style='width: 40px' type='text' id='parame_c'>," +
@@ -32,10 +32,11 @@ app.controller('myCtrl', function($scope,$http) {
                 "<input class='search' style='width: 90px' type='text' id='parame_g'>," +
                 "&nbsp;" +
                 "&nbsp;" +
+                "&nbsp;" +
                 "&nbsp;");
-            myGrid.setInitWidths("130,200,70,110,100,130,130,160,65,65");//设置表格初始宽度
-            myGrid.setColAlign("center,left,left,left,left,left,left,left,left,left");//数据显示位置
-            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
+            myGrid.setInitWidths("130,200,70,110,100,130,130,160,160,65,65");//设置表格初始宽度
+            myGrid.setColAlign("left,left,left,left,left,left,left,left,left,left,left");//数据显示位置
+            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
             //myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
             myGrid.enableAutoWidth(true);
             myGrid.init();
@@ -133,6 +134,7 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].begin_time,
                             get_data[i].end_time,
                             get_data[i].add_time,
+                            get_data[i].last_updated_time,
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='edit'></div>",
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>"
                         ],i);
@@ -251,6 +253,7 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].begin_time,
                             get_data[i].end_time,
                             get_data[i].add_time,
+                            get_data[i].last_updated_time,
                             "<div style='margin: 10px 20px 30px 40px ;padding:10px 20px 30px 40px;font-size: 24px' class='icon-ios-compose' id='edit'></div>",
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>"
                         ],i);
