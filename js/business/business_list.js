@@ -95,7 +95,7 @@ app.controller('myCtrl', function($scope,$http) {
             "&business_place^="+$scope.so_bus_place+
             "&begin_time^="+$scope.so_start_time+
             "&end_time^="+$scope.so_end_time+
-            "&page_size=20"+
+            "&page_size=15"+
             "&page="+p)
             .success(function(res){
                 if(res.response.success == 1){
@@ -139,8 +139,6 @@ app.controller('myCtrl', function($scope,$http) {
                             "<span style='margin: 0;padding: 0;font-size: 30px' class='icon-ios-eye' id='detail' ></span>",
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='comment'></div>"
                         ],i);
-
-
                     }
 
                     //分页  init
@@ -209,7 +207,7 @@ app.controller('myCtrl', function($scope,$http) {
             "&business_num^="+$scope.so_bus_num+
             "&business_reason^="+$scope.so_bus_reason+
             "&business_place^="+$scope.so_bus_place+
-            "&page_size=20"+
+            "&page_size=15"+
             "&page="+p)
             .success(function(res){
                 if(res.response.success == 1){

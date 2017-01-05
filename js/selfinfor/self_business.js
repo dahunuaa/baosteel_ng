@@ -94,7 +94,7 @@ app.controller('myCtrl', function($scope,$http) {
             "&business_place^="+$scope.so_bus_place+
             "&begin_time^="+$scope.so_start_time+
             "&end_time^="+$scope.so_end_time+
-            "&page_size=20"+
+            "&page_size=15"+
             "&page="+p)
             .success(function(res){
                 if(res.response.success == 1){
@@ -213,7 +213,7 @@ app.controller('myCtrl', function($scope,$http) {
             "&business_place^="+$scope.so_bus_place+
             "&begin_time^="+$scope.so_start_time+
             "&end_time^="+$scope.so_end_time+
-            "&page_size=20"+
+            "&page_size=15"+
             "&page="+p)
             .success(function(res){
                 if(res.response.success == 1){
@@ -243,7 +243,7 @@ app.controller('myCtrl', function($scope,$http) {
                         //    get_data[i].status = "生效"
                         //}else{
                         //    get_data[i].status = "无效"
-                        //}
+                        //
                         myGrid.addRow(str,[
                             get_data[i].add_user_name,
                             get_data[i].business_staff,
