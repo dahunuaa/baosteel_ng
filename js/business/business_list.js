@@ -38,8 +38,8 @@ app.controller('myCtrl', function($scope,$http) {
                 "&nbsp;");
             myGrid.setInitWidths("130,200,70,110,100,130,130,160,160,65,65");//设置表格初始宽度
             myGrid.setColAlign("left,left,left,left,left,left,left,left,left,left,left");//数据显示位置
-            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
-            //myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
+            // myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
+            myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
             myGrid.enableAutoWidth(true);
             myGrid.init();
 
