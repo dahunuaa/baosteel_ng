@@ -94,7 +94,7 @@ app.controller('myCtrl',function($scope,$http){
         }else if($scope.inforgather.text==""||$scope.inforgather.text==undefined||$scope.inforgather.text==null){
             dhx_alert("请填写正文！")
         }else{
-            dhx_alert(JSON.stringify($scope.images))
+            // dhx_alert(JSON.stringify($scope.images))
             $http({
                 method:'post',
                 url:basePath+"api/v1.0/inforgather",
