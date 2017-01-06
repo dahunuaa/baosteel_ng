@@ -60,6 +60,20 @@
             <td class="td_left"><span class="red">*</span>正文</td>
             <td><textarea style="width: 500px;height: 100px"  type="text"  ng-model="inforgather.text" id="inforgather_text"placeholder="请填写情报搜集详情" ></textarea></td>
         </tr>
+        <tr>
+            <td class="td_left">上传图片</td>
+            <td>
+                <div>
+                    <input type="file" class="uploadimg">
+                    <input type="file" class="uploadimg">
+                    <input type="file" class="uploadimg">
+                    <div class="uploaddiv"><img  style="max-width: 150px"  src="../imgs/upload.png"   alt="" /></div>
+                    <div class="uploaddiv"><img  style="max-width: 150px"  src="../imgs/upload.png" alt="" /></div>
+                    <div class="uploaddiv"><img  style="max-width: 150px"  src="../imgs/upload.png" alt="" /></div>
+                </div>
+            </td>
+        </tr>
+
     </table>
     <button class="btn_blue" ng-click="submit()">提交</button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <button class="btn_blue" onclick="JavaScript:history.go(-1)">返回</button>
