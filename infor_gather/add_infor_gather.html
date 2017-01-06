@@ -28,33 +28,37 @@
 
     <script type="text/javascript" src="../js/infor_gather/add_infor_gather.js"></script>
     <script type="text/javascript" src="../js/plugins/kkpager.min.js"></script>
+    <script>
 
+    </script>
 </head>
 
 <body  ng-app="myApp" ng-controller="myCtrl" >
-<h3 style="width: 100%;text-align: center">新建出差任务</h3>
+<h3 style="width: 100%;text-align: center">新建情报搜集</h3>
 
-<div class="public">
+<div class="public" >
     <table class="tab_user">
         <tr class="td_left">
             <td class="td_left"><span class="red">*</span></span>标题</td>
-            <td><input  style="width: 300px" type="text" ng-model="inforgather.title"  id="inforgather_title" placeholder="输入情报搜集标题"></td>
+            <td><input  style="width: 400px" type="text" ng-model="inforgather.title"  id="inforgather_title" placeholder="输入情报搜集标题"></td>
         </tr>
         <tr class="td_left">
             <td class="td_left"><span class="red">*</span></span>地址</td>
-            <td><input  style="width: 300px" type="text" ng-model="inforgather.address"  id="inforgather_address" placeholder="请输入地址"></td>
+            <td><input  style="width: 400px" type="text" ng-model="inforgather.address"  id="inforgather_address" placeholder="请输入地址"></td>
         </tr>
         <tr>
             <td class="td_left"><span class="red">*</span>油田区块</td>
-            <td><input  type="text" style="width: 300px;border-radius: 5px;height: 3vh;border:1px solid #ccc ;"  ng-model="inforgather.area" placeholder="请选择油田区块"></td>
+            <td>
+                <select style="font-size: 20px;width: 100px" ng-model="inforgather.area" ng-options="y.text for (x, y) in gather_areas"></select>
+            </td>
         </tr>
         <tr>
             <td class="td_left"><span class="red">*</span>油田</td>
-            <td><input style="width: 300px"  type="text"  ng-model="inforgather.oilfield" id="inforgather_oilfield" placeholder="请填写油田"></td>
+            <td><input style="width: 400px"  type="text"  ng-model="inforgather.oilfield" id="inforgather_oilfield" placeholder="请填写油田"></td>
         </tr>
         <tr>
             <td class="td_left"><span class="red">*</span>正文</td>
-            <td><input style="width: 200px"  type="text"  ng-model="inforgather.text" id="inforgather_text"placeholder="请填写情报搜集详情" ></td>
+            <td><textarea style="width: 500px;height: 100px"  type="text"  ng-model="inforgather.text" id="inforgather_text"placeholder="请填写情报搜集详情" ></textarea></td>
         </tr>
     </table>
     <button class="btn_blue" ng-click="submit()">提交</button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

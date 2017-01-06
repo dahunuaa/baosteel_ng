@@ -1,0 +1,11 @@
+{
+	options: [
+		{value: "dongbei", selected: "1",  text: "东北"},
+		{value: "xinan", text: "西南"},
+		{value: "zhonghaiyou", text: "中海油"},
+		{value: "huabei", text: "华北"},
+		{value: "huazhong", text: "华中"},
+		{value: "huadong",text: "华东"},
+		{value: "xinjiang", checked: "1", text: "新疆"},
+	]
+}
