@@ -28,6 +28,4 @@ app.controller('myCtrl',function($scope,$http){
                 })
         }
     }
-    // dhx_alert($scope.data.images)
-    // document.getElementById("inforgather_img").src=data.images
 })
