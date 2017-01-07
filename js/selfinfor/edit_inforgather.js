@@ -1,6 +1,14 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope,$http) {
     init();
+    var img1='';
+    var img2='';
+    var img3='';
+
+    $scope.m1='';
+    $scope.m2='';
+    $scope.m3='';
+    $scope.images=[$scope.m1,$scope.m2,$scope.m3];
 
     function init(){
         if(localStorage.getItem("token") == undefined || localStorage.getItem("token") == null){
@@ -42,15 +50,6 @@ app.controller('myCtrl', function($scope,$http) {
     };
 
     $scope.inforgather = {};
-
-    var img1='';
-    var img2='';
-    var img3='';
-
-    $scope.m1='';
-    $scope.m2='';
-    $scope.m3='';
-    $scope.images=[$scope.m1,$scope.m2,$scope.m3]
 
     //上传图片
     $(".uploaddiv").click(function(){
@@ -115,6 +114,14 @@ app.controller('myCtrl', function($scope,$http) {
 
 //确认修改
     $scope.do_edit = function(){
+        if($scope.m1 == ""){
+            $scope.m1 = $scope.img1
+        } if($scope.m2 == ""){
+            $scope.m2 = $scope.img2
+        } if($scope.m3 == ""){
+            $scope.m3 = $scope.img3
+        }
+
         if ($scope.src_gather_title==""||$scope.src_gather_title==undefined||$scope.src_gather_title==null){
             dhx_alert("请填写标题！")
         }else if($scope.src_gather_address==""||$scope.src_gather_address==undefined||$scope.src_gather_address==null){
@@ -126,6 +133,8 @@ app.controller('myCtrl', function($scope,$http) {
         }else if($scope.src_gather_text==""||$scope.src_gather_text==undefined||$scope.src_gather_text==null){
             dhx_alert("请填写正文！")
         }else {
+            $scope.images = [$scope.m1,$scope.m2,$scope.m3];
+
             $http({
                 method:'put',
                 url:basePath+"api/v1.0/inforgather/"+$scope._id,
