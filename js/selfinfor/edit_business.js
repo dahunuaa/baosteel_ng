@@ -40,8 +40,21 @@ app.controller('myCtrl', function($scope,$http) {
 
 //确认修改
     $scope.do_edit = function(){
-        // dhx_alert(document.getElementById("start_time").value)
-        if(document.getElementById("start_time").value>document.getElementById("end_time").value){
+        var star_time = document.getElementById("start_time").value;
+        var end_time = document.getElementById("end_time").value;
+        if ($scope.src_bus_staff==""||$scope.src_bus_staff==undefined||$scope.src_bus_staff==null){
+            dhx_alert("请填写出差人员！")
+        }else if($scope.src_bus_num==""||$scope.src_bus_num==undefined||$scope.src_bus_num==null){
+            dhx_alert("请填写出差总人数！")
+        }else if($scope.src_bus_place==""||$scope.src_bus_place==undefined||$scope.src_bus_place==null){
+            dhx_alert("请填写出差地！")
+        }else if($scope.src_bus_reason==""||$scope.src_bus_reason==undefined||$scope.src_bus_reason==null){
+            dhx_alert("请填写出差缘由！")
+        }else if(star_time==""||star_time==undefined||star_time==null){
+            dhx_alert("请选择出差开始时间！")
+        }else if(end_time==""||end_time==undefined||end_time==null){
+            dhx_alert("请选择出差结束时间！")
+        }else if(star_time>end_time){
             dhx_alert("结束时间不得早于结束时间！")
         }else{
             $http({
