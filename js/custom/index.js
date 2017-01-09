@@ -84,21 +84,29 @@ app.controller('myCtrl', function($scope,$http){
                     }else if(id =="add_infor_gather"){
                         mySidebar_2.cells("add_infor_gather").attachURL("infor_gather/add_inforgathe.html");
                     }else if(id =="dongbei"){
-                        mySidebar_2.cells("dongbei").attachURL("infor_gather/dongbei.html");
+                        localStorage.setItem("area_name","东北");
+                        mySidebar_2.cells("dongbei").attachURL("infor_gather/given_area.html");
                     }else if(id =="xinan"){
-                        mySidebar_2.cells("xinan").attachURL("infor_gather/xinan.html");
+                        localStorage.setItem("area_name","西南");
+                        mySidebar_2.cells("xinan").attachURL("infor_gather/given_area.html");
                     }else if(id =="zhonghaiyou"){
-                        mySidebar_2.cells("zhonghaiyou").attachURL("infor_gather/zhonghaiyou.html");
+                        localStorage.setItem("area_name","中海油");
+                        mySidebar_2.cells("zhonghaiyou").attachURL("infor_gather/given_area.html");
                     }else if(id =="huabei"){
-                        mySidebar_2.cells("huabei").attachURL("infor_gather/huabei.html");
+                        localStorage.setItem("area_name","华北");
+                        mySidebar_2.cells("huabei").attachURL("infor_gather/given_area.html");
                     }else if(id =="huazhong"){
-                        mySidebar_2.cells("huazhong").attachURL("infor_gather/huazhong.html");
+                        localStorage.setItem("area_name","华中");
+                        mySidebar_2.cells("huazhong").attachURL("infor_gather/given_area.html");
                     }else if(id =="huadong"){
-                        mySidebar_2.cells("huadong").attachURL("infor_gather/huadong.html");
+                        localStorage.setItem("area_name","华东");
+                        mySidebar_2.cells("huadong").attachURL("infor_gather/given_area.html");
                     }else if(id =="xinjiang"){
-                        mySidebar_2.cells("xinjiang").attachURL("infor_gather/xinjiang.html");
+                        localStorage.setItem("area_name","新疆");
+                        mySidebar_2.cells("xinjiang").attachURL("infor_gather/given_area.html");
                     }else if(id =="xibei"){
-                        mySidebar_2.cells("xibei").attachURL("infor_gather/xibei.html");
+                        localStorage.setItem("area_name","西北");
+                        mySidebar_2.cells("xibei").attachURL("infor_gather/given_area.html");
                     }
                 });
 

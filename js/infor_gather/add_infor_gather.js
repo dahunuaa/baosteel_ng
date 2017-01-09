@@ -109,7 +109,7 @@ app.controller('myCtrl',function($scope,$http){
                 }
             }).success(function(res){
                 if(res.response.success==1){
-                    dhx_alert("新建情报搜集!",function(){
+                    dhx_alert("新建情报搜集成功!",function(){
                         window.location.href="inforgather_list.html"
                     })
                 }else{
