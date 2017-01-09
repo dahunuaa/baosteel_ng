@@ -150,7 +150,7 @@ app.controller('myCtrl', function($scope,$http){
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
                     json: "dhtmlxSuite/samples/dhtmlxSidebar/common/about_us.json",
                     onload: function () {
-                        mySidebar_5.cells("about_us").attachURL("about_us/about_baostell.html");
+                        mySidebar_5.cells("about_us").attachURL("http://www.baowugroup.com/contents/5110/94916.html");
                     }
                 });
                 mySidebar_6 = myTabbar.tabs("feedback").attachSidebar({
