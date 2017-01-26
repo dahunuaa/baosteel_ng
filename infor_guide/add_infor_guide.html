@@ -44,11 +44,11 @@
         </tr>
         <tr class="td_left">
             <td class="td_left"><span class="red">*</span></span>类别</td>
-            <td><input  style="width: 400px" type="text" ng-model="inforguide.type" ng-options="y.text for (x, y) in gather_areas"placeholder="请选择类别"></td>
+            <td><select  style="width: 400px" type="text" ng-model="inforguide.type" ng-options="y.text for (x, y) in guide_type"placeholder="请选择类别"></select></td>
         </tr>
         <tr>
             <td class="td_left"><span class="red">*</span>正文</td>
-            <td><textarea style="width: 500px;height: 100px"  type="text"  ng-model="inforguide.text" id="inforguide_text"placeholder="请填写信息指南详情" ></textarea></td>
+            <td><textarea style="width: 500px;height: 100px"  type="text"  ng-model="inforguide.text" id="inforguide_text" placeholder="请填写信息指南详情" ></textarea></td>
         </tr>
         <tr>
             <td class="td_left">上传图片</td>

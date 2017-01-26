@@ -91,7 +91,7 @@ app.controller('myCtrl',function($scope,$http){
             // dhx_alert(JSON.stringify($scope.images))
             $http({
                 method:'post',
-                url:basePath+"api/v1.0/inforgather",
+                url:basePath+"api/v1.0/inforguide",
                 params:{
                     "access_token":localStorage.getItem("token"),
                     "guide_title":$scope.inforguide.title,
@@ -102,7 +102,7 @@ app.controller('myCtrl',function($scope,$http){
             }).success(function(res){
                 if(res.response.success==1){
                     dhx_alert("新建信息指南成功!",function(){
-                        window.location.href="inforguide_list.html"
+                        window.location.href="infor_guide_list.html"
                     })
                 }else{
                     dhx_alert(res.response.return_code)

@@ -1,9 +1,9 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope,$http) {
 
-    var get_url  ="api/v1.0/inforgather?";//get数据接口
-    var del_url  ="api/v1.0/inforgather";//删除接口
-    var edit_url ="edit_inforgather.html?";//点击详情跳转地址
+    var get_url  ="api/v1.0/inforguide?";//get数据接口
+    var del_url  ="api/v1.0/inforguide";//删除接口
+    var edit_url ="edit_inforguide.html?";//点击详情跳转地址
 
 
 
@@ -22,19 +22,17 @@ app.controller('myCtrl', function($scope,$http) {
             //建页
             myGrid = new dhtmlXGridObject('gridbox');
             myGrid.setImagePath("../dhtmlxSuite/sources/dhtmlxGrid/codebase/imgs/");//表格图标路径
-            myGrid.setHeader("编辑人,标题,地址,油田区块,油田,添加时间,最后编辑时间,修改,删除");//设置表头
+            myGrid.setHeader("编辑人,标题,类别,添加时间,最后编辑时间,修改,删除");//设置表头
             myGrid.attachHeader("<input class='search' style='width: 100px' type='text' id='parame_a'>," +
                 "<input class='search' style='width: 100px' type='text' id='parame_b'>," +
                 "<input class='search' style='width: 100px' type='text' id='parame_c'>," +
-                "<input class='search' style='width: 120px' type='text' id='parame_d'>," +
-                "<input class='search' style='width: 40px' type='text' id='parame_e'>," +
                 "&nbsp;" +
                 "&nbsp;" +
                 "&nbsp;"+
                 "&nbsp;");
-            myGrid.setInitWidths("130,200,200,100,200,160,160,65,65");//设置表格初始宽度
-            myGrid.setColAlign("left,left,left,left,left,left,left,left,left");//数据显示位置
-            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
+            myGrid.setInitWidths("130,200,200,160,160,65,65");//设置表格初始宽度
+            myGrid.setColAlign("left,left,left,left,left,left,left");//数据显示位置
+            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
             //myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
             myGrid.enableAutoWidth(true);
             myGrid.init();
@@ -46,17 +44,15 @@ app.controller('myCtrl', function($scope,$http) {
     function myGridjiazai(p){
         if($scope.so_edit_name == undefined){
             $scope.so_edit_name = ""
-        }if($scope.so_address == undefined){
-            $scope.so_address = ""
-        }if($scope.so_oilfield == undefined) {
-            $scope.so_oilfield = ""
+        }if($scope.so_title == undefined){
+            $scope.so_title = ""
+        }if($scope.so_guide_type == undefined) {
+            $scope.so_guide_type = ""
         }
         $http.get(basePath+get_url+"access_token="+localStorage.getItem("token")+
             "&add_user_name^="+$scope.so_edit_name+
-            "&gather_title^="+$scope.so_title+
-            "&gather_address^="+$scope.so_address+
-            "&gather_area^="+$scope.so_area+
-            "&gather_oilfield^="+$scope.so_oilfield+
+            "&guide_title^="+$scope.so_title+
+            "&guide_type^="+$scope.so_guide_type+
             "&page_size=15"+
             "&page="+p)
             .success(function(res){
@@ -90,10 +86,8 @@ app.controller('myCtrl', function($scope,$http) {
                         //}
                         myGrid.addRow(str,[
                             get_data[i].add_user_name,
-                            get_data[i].gather_title,
-                            get_data[i].gather_address,
-                            get_data[i].gather_area,
-                            get_data[i].gather_oilfield,
+                            get_data[i].guide_title,
+                            get_data[i].guide_type,
                             get_data[i].add_time,
                             get_data[i].last_updated_time,
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='edit'></div>",
@@ -152,15 +146,15 @@ app.controller('myCtrl', function($scope,$http) {
     function myGridjiazai2(p){
         if($scope.so_edit_name == undefined){
             $scope.so_edit_name = ""
-        }if($scope.so_address == undefined){
-            $scope.so_address = ""
-        }if($scope.so_oilfield == undefined) {
-            $scope.so_oilfield = ""
+        }if($scope.so_title == undefined){
+            $scope.so_title = ""
+        }if($scope.so_guide_type == undefined) {
+            $scope.so_guide_type = ""
         }
         $http.get(basePath+get_url+"access_token="+localStorage.getItem("token")+
             "&add_user_name^="+$scope.so_edit_name+
-            "&gather_address^="+$scope.so_address+
-            "&gather_oilfield^="+$scope.so_oilfield+
+            "&guide_title^="+$scope.so_title+
+            "&guide_type^="+$scope.so_guide_type+
             "&page_size=15"+
             "&page="+p)
             .success(function(res){
@@ -194,10 +188,8 @@ app.controller('myCtrl', function($scope,$http) {
                         //}
                         myGrid.addRow(str,[
                             get_data[i].add_user_name,
-                            get_data[i].gather_title,
-                            get_data[i].gather_address,
-                            get_data[i].gather_area,
-                            get_data[i].gather_oilfield,
+                            get_data[i].guide_title,
+                            get_data[i].guide_type,
                             get_data[i].add_time,
                             get_data[i].last_updated_time,
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='edit'></div>",
@@ -294,9 +286,7 @@ app.controller('myCtrl', function($scope,$http) {
 
         $scope.so_edit_name=document.getElementById("parame_a").value;
         $scope.so_title=document.getElementById("parame_b").value;
-        $scope.so_address=document.getElementById("parame_c").value;
-        $scope.so_area=document.getElementById("parame_d").value;
-        $scope.so_oilfield=document.getElementById("parame_e").value;
+        $scope.so_guide_type=document.getElementById("parame_c").value;
 
         myGrid.clearAll();
         myGridjiazai(1);
