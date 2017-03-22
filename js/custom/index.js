@@ -22,7 +22,7 @@ app.controller('myCtrl', function($scope,$http){
         function init() {
             $scope.name = localStorage.getItem("name");
             if (localStorage.getItem("token") == "undefined" || localStorage.getItem("token") == "" || localStorage.getItem("token") == null) {
-                window.location.href = "login.html"
+                window.location.href = "../../../../mui workspace/miniui/login.html"
             } else {
                 create();
             }
@@ -32,7 +32,7 @@ app.controller('myCtrl', function($scope,$http){
                 myTabbar = new dhtmlXTabBar({
                     parent: "tabbarObj",
                     tabs: [
-                        {id: "placeholder", text: '', active:1 ,width: 160,},
+                        {id: "placeholder", text: '', active:1 ,width: 160},
                         {id: "business", text: '出差信息',active:1 , width: 160},
                         {id: "infor_gather", text: "情报搜集", width: 160},
                         {id: "infor_guide", text: "信息指南",width: 160},
@@ -61,6 +61,8 @@ app.controller('myCtrl', function($scope,$http){
                         mySidebar_1.cells("business_list").attachURL("business/business_list.html");
                     }
                 });
+
+
                 mySidebar_2 = myTabbar.tabs("infor_gather").attachSidebar({
                     width: 160,
                     icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
@@ -174,7 +176,7 @@ app.controller('myCtrl', function($scope,$http){
     }
     $scope.login_out = function(){
         setCookie("token","");
-        window.location.href="login.html"
+        window.location.href="../../../../mui workspace/miniui/login.html"
     }
 
 })

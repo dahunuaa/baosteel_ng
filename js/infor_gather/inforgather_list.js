@@ -1,6 +1,5 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope,$http) {
-
     var get_url  ="api/v1.0/inforgather?";//get数据接口
     var del_url  ="api/v1.0/inforgather";//删除接口
     var add_url  ="add_infor_gather.html";//点击新增跳转地址
@@ -19,7 +18,7 @@ app.controller('myCtrl', function($scope,$http) {
 
     function init(){
         if(localStorage.getItem("token") == undefined ||localStorage.getItem("token") == null){
-            window.location.href = "../login.html"
+            window.location.href = "../../../../mui workspace/miniui/login.html"
         }else{
             //建页
             myGrid = new dhtmlXGridObject('gridbox');

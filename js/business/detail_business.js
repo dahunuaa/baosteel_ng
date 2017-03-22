@@ -10,6 +10,7 @@ app.controller('myCtrl',function($scope,$http){
 
     }
     init();
+    var comment_data=new Array()
 
     function init(){
         if(localStorage.getItem("token") == undefined||localStorage.getItem("token")==null){
@@ -19,10 +20,34 @@ app.controller('myCtrl',function($scope,$http){
                 .success(function(res){
                     if(res.response.success ==1){
                         $scope.data = res.response.data
+                        comment_show();
+
                     }else {
                         dhx_alert(res.response.return_code)
                     }
                 })
         }
     }
+
+    function comment_show(){
+        $http.get(basePath+"api/v1.0/comment?access_token="+localStorage.getItem('token')+"&comment_type=bussiness&text_id="+$scope._id)
+            .success(function(res){
+                if(res.response.success==1){
+                    comment_data=res.response.data;
+                    comment_list = document.getElementById("comment_gridbox")
+                    angular.forEach(comment_data,function(data,index,array){
+                        var li = document.createElement("dt")
+                        li.innerHTML="<span id='com_name' style='font-size: 20px'>"+array[index].add_user_name+"</span>"+"&nbsp;&nbsp;&nbsp;"+"<span id='com_time'>"+array[index].add_time
+                            +"</span>"+"<br>"+"<span id='com_text 'style='font-size: 20px;'>"+array[index].text+"</span>"+"<p></p>"+"<hr style='width: 60%'/>";
+                        comment_list.appendChild(li)
+                    })
+
+
+
+                }else{
+                    dhx_alert(res.response.return_code)
+                }
+            })
+    }
+
 })

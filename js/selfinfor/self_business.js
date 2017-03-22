@@ -17,7 +17,7 @@ app.controller('myCtrl', function($scope,$http) {
 
     function init(){
         if(localStorage.getItem("token") == undefined ||localStorage.getItem("token") == null){
-            window.location.href = "../login.html"
+            window.location.href = "../../../../mui workspace/miniui/login.html"
         }else{
             //建页
             myGrid = new dhtmlXGridObject('gridbox');

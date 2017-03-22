@@ -5,13 +5,13 @@ var app = angular.module('myApp',[]);
 app.controller('myCtrl',function($scope,$http){
 
     $scope.gather_areas = {
-        area01 : {value: "dongbei",text: "东北"},
+        area01 : {value: "dongbei",text: "东北",selected: "1"},
         area02 : {value: "xinan", text: "西南"},
         area03 : {value: "zhonghaiyou", text: "中海油"},
         area04 : {value: "huabei", text: "华北"},
         area05 : {value: "huazhong", text: "华中"},
         area06 : {value: "huadong",text: "华东"},
-        area07 : {value: "xinjiang", selected: "1", text: "新疆"}
+        area07 : {value: "xinjiang", text: "新疆"}
     };
 
     $scope.inforgather = {};

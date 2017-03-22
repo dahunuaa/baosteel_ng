@@ -28,7 +28,12 @@
 
     <script type="text/javascript" src="../js/business/detail_business.js"></script>
     <script type="text/javascript" src="../js/plugins/kkpager.min.js"></script>
+    <script type="text/css">
+        body{
+            text-align: center;
+        }
 
+    </script>
 </head>
 <body  ng-app="myApp" ng-controller="myCtrl" >
 <h2 style="width:100%;text-align: center;color: #39c;">出差详情</h2>
@@ -100,6 +105,16 @@
         </td>
     </tr>
 </table>
+<hr width="61%" />s
+<div id="comment_area" style="text-align: center">
+    <span style="font-size: 30px" >评论区</span>
+    <hr width="61%" />
+    <dl id="comment_gridbox">
+
+    </dl>
+</div>
+
+
 
 <p style="width: 100%;text-align: center"><button class="btn_blue"  onclick="JavaScript:history.go(-1);">返回</button></p>
 
