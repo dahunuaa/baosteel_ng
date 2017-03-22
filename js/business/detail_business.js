@@ -50,4 +50,26 @@ app.controller('myCtrl',function($scope,$http){
             })
     }
 
+    $scope.add_comment = function(){
+        comment_content = document.getElementById("com_text").value
+        $http({
+            method:'post',
+            url:basePath+"api/v1.0/comment",
+            params:{
+                "access_token":localStorage.getItem("token"),
+                "comment_type":"bussiness",
+                "text_id":$scope._id,
+                "user_id":localStorage.getItem("mobile"),
+                "text":comment_content
+
+            }
+        }).success(function(res){
+            if(res.response.success=="1"){
+                dhx_alert("提交评论成功",function(){
+                    window.location.reload()
+                })
+            }
+        })
+    }
+
 })
