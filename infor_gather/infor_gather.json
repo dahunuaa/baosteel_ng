@@ -9,7 +9,7 @@
       {id:"huadong",text:"华东区域",icon:"documents.png"},
       {id:"xinjiang",text:"新疆区域",icon:"documents.png"},
       {id:"xibei",text:"西北区域",icon:"documents.png"},
-      {id:"like",text:"我的收藏",icon:"documents.png"},
+      {id:"like",text:"我的收藏",icon:"like.png"},
 ]
 
 }

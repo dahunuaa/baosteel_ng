@@ -46,8 +46,8 @@ app.controller('myCtrl', function($scope,$http){
 
                 mySidebar_8 = myTabbar.tabs("placeholder").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/business.json",
+                    icons_path: "icons/icons_material/",
+                    json: "business/business.json",
                     onload: function () {
                         mySidebar_8.cells("business_list").attachURL("business/business_list.html");
                     }
@@ -55,8 +55,8 @@ app.controller('myCtrl', function($scope,$http){
 
                 mySidebar_1 = myTabbar.tabs("business").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/business.json",
+                    icons_path: "icons/icons_material/",
+                    json: "business/business.json",
                     onload: function () {
                         mySidebar_1.cells("business_list").attachURL("business/business_list.html");
                     }
@@ -65,19 +65,10 @@ app.controller('myCtrl', function($scope,$http){
 
                 mySidebar_2 = myTabbar.tabs("infor_gather").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_gather.json",
+                    icons_path: "icons/icons_material/",
+                    json: "infor_gather/infor_gather.json",
                     onload: function () {
                         mySidebar_2.cells("infor_gather_list").attachURL("infor_gather/inforgather_list.html");
-                        // mySidebar_2.cells("add_infor_gather").attachURL("infor_gather/add_inforgathe.html");
-                        // mySidebar_2.cells("dongbei").attachURL("infor_gather/dongbei.html");
-                        // mySidebar_2.cells("xinan").attachURL("infor_gather/xinan.html");
-                        // mySidebar_2.cells("zhonghaiyou").attachURL("infor_gather/zhonghaiyou.html");
-                        // mySidebar_2.cells("huabei").attachURL("infor_gather/huabei.html");
-                        // mySidebar_2.cells("huazhong").attachURL("infor_gather/huazhong.html");
-                        // mySidebar_2.cells("huadong").attachURL("infor_gather/huadong.html");
-                        // mySidebar_2.cells("xinjiang").attachURL("infor_gather/xinjiang.html");
-                        // mySidebar_2.cells("xibei").attachURL("infor_gather/xibei.html");
                     }
                 });
                 mySidebar_2.attachEvent("onSelect",function(id){
@@ -109,28 +100,26 @@ app.controller('myCtrl', function($scope,$http){
                     }else if(id =="xibei"){
                         localStorage.setItem("area_name","西北");
                         mySidebar_2.cells("xibei").attachURL("infor_gather/given_area.html");
+                    }else if(id=="like"){
+                        mySidebar_2.cells("like").attachURL("infor_gather/like.html");
                     }
                 });
 
                 mySidebar_3 = myTabbar.tabs("infor_guide").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/infor_guide.json",
+                    icons_path: "icons/icons_material/",
+                    json: "infor_guide/infor_guide.json",
                     onload: function () {
                         mySidebar_3.cells("infor_guide_list").attachURL("infor_guide/infor_guide_list.html");
-                        // mySidebar_3.cells("add_infor_guide").attachURL("inforguide/add_infor_guide.html");
+                        mySidebar_3.cells("like").attachURL("infor_guide/like.html");
                     }
                 });
                 mySidebar_4 = myTabbar.tabs("self_infor").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/self_infor.json",
+                    icons_path: "icons/icons_material/",
+                    json: "self_infor/self_infor.json",
                     onload: function () {
                         mySidebar_4.cells("self_business").attachURL("selfinfor/self_business.html");
-                        // mySidebar_4.cells("self_infor").attachURL("selfinfor/self_infor.html");
-                        // mySidebar_4.cells("self_inforgather").attachURL("selfinfor/self_inforgather.html");
-                        // mySidebar_4.cells("self_inforguide").attachURL("selfinfor/self_inforguide.html");
-                        // mySidebar_4.cells("changepsw").attachURL("selfinfor/changepsw.html");
                     }
                 });
                 mySidebar_4.attachEvent("onSelect",function(id){
@@ -149,24 +138,24 @@ app.controller('myCtrl', function($scope,$http){
 
                 mySidebar_5 = myTabbar.tabs("about_us").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/about_us.json",
+                    icons_path: "icons/icons_material/",
+                    json: "about_us/about_us.json",
                     onload: function () {
                         mySidebar_5.cells("about_us").attachURL("http://www.baowugroup.com/contents/5110/94916.html");
                     }
                 });
                 mySidebar_6 = myTabbar.tabs("feedback").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/feedback.json",
+                    icons_path: "icons/icons_material/",
+                    json: "feedback/feedback.json",
                     onload: function () {
                         mySidebar_6.cells("add_feedback").attachURL("feedback/web_user.html");
                     }
                 });
                 mySidebar_7 = myTabbar.tabs("notice").attachSidebar({
                     width: 160,
-                    icons_path: "dhtmlxSuite/samples/dhtmlxSidebar/common/icons_material/",
-                    json: "dhtmlxSuite/samples/dhtmlxSidebar/common/notice.json",
+                    icons_path: "icons/icons_material/",
+                    json: "notice/notice.json",
                     onload: function () {
                         mySidebar_7.cells("notice_list").attachURL("notice/web_user.html");
                     }

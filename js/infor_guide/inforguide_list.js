@@ -24,17 +24,16 @@ app.controller('myCtrl', function($scope,$http) {
             //建页
             myGrid = new dhtmlXGridObject('gridbox');
             myGrid.setImagePath("../dhtmlxSuite/sources/dhtmlxGrid/codebase/imgs/");//表格图标路径
-            myGrid.setHeader("编辑人,标题,类别,添加时间,最后编辑时间,详情,评论");//设置表头
+            myGrid.setHeader("编辑人,标题,类别,添加时间,最后编辑时间,详情");//设置表头
             myGrid.attachHeader("<input class='search' style='width: 100px' type='text' id='parame_a'>," +
                 "<input class='search' style='width: 100px' type='text' id='parame_b'>," +
                 "<input class='search' style='width: 100px' type='text' id='parame_c'>," +
                 "&nbsp;" +
                 "&nbsp;" +
-                "&nbsp;"+
                 "&nbsp;");
-            myGrid.setInitWidths("130,200,100,160,160,65,65");//设置表格初始宽度
-            myGrid.setColAlign("left,left,left,left,left,left,left");//数据显示位置
-            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
+            myGrid.setInitWidths("130,200,100,200,200,65");//设置表格初始宽度
+            myGrid.setColAlign("left,left,left,left,left,left");//数据显示位置
+            myGrid.setColTypes("ro,ro,ro,ro,ro,ro");//数据呈现类型
             //myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
             myGrid.enableAutoWidth(true);
             myGrid.init();
@@ -93,7 +92,6 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].add_time,
                             get_data[i].last_updated_time,
                             "<span style='margin: 0;padding: 0;font-size: 30px' class='icon-ios-eye' id='detail' ></span>",
-                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='comment'></div>"
                         ],i);
                     }
 
