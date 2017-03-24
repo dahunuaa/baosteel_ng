@@ -110,4 +110,7 @@ app.controller('myCtrl',function($scope,$http){
             })
         }
     }
+    $scope.back=function(){
+        window.location.href="infor_guide_list.html"
+    }
 });

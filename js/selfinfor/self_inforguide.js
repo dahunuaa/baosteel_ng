@@ -4,7 +4,7 @@ app.controller('myCtrl', function($scope,$http) {
     var get_url  ="api/v1.0/inforguide?";//get数据接口
     var del_url  ="api/v1.0/inforguide";//删除接口
     var edit_url ="edit_inforguide.html?";//点击详情跳转地址
-
+    var detail_url = "../infor_guide/detail_infor_guide.html?";
 
 
     var myGrid;// 声明表格
@@ -22,17 +22,18 @@ app.controller('myCtrl', function($scope,$http) {
             //建页
             myGrid = new dhtmlXGridObject('gridbox');
             myGrid.setImagePath("../dhtmlxSuite/sources/dhtmlxGrid/codebase/imgs/");//表格图标路径
-            myGrid.setHeader("编辑人,标题,类别,添加时间,最后编辑时间,修改,删除");//设置表头
+            myGrid.setHeader("编辑人,标题,类别,添加时间,最后编辑时间,修改,删除,详情");//设置表头
             myGrid.attachHeader("<input class='search' style='width: 100px' type='text' id='parame_a'>," +
                 "<input class='search' style='width: 100px' type='text' id='parame_b'>," +
                 "<input class='search' style='width: 100px' type='text' id='parame_c'>," +
                 "&nbsp;" +
                 "&nbsp;" +
                 "&nbsp;"+
+                "&nbsp;"+
                 "&nbsp;");
-            myGrid.setInitWidths("130,200,200,160,160,65,65");//设置表格初始宽度
-            myGrid.setColAlign("left,left,left,left,left,left,left");//数据显示位置
-            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
+            myGrid.setInitWidths("130,200,200,160,160,65,65,65");//设置表格初始宽度
+            myGrid.setColAlign("left,left,left,left,left,left,left,left");//数据显示位置
+            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
             //myGrid.setColSorting("price,str,int,price,date,int");//设置各列排序类型
             myGrid.enableAutoWidth(true);
             myGrid.init();
@@ -91,7 +92,8 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].add_time,
                             get_data[i].last_updated_time,
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='edit'></div>",
-                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>"
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>",
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-eye' id='detail'></div>"
                         ],i);
                     }
 
@@ -193,7 +195,8 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].add_time,
                             get_data[i].last_updated_time,
                             "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-compose' id='edit'></div>",
-                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>"
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-trash' id='delete'></div>",
+                            "<div style='margin-top: 1px;padding: 0;;font-size: 20px' class='icon-ios-eye' id='detail'></div>"
                         ],i);
 
 
@@ -244,6 +247,16 @@ app.controller('myCtrl', function($scope,$http) {
             });
         }
     });
+
+    //点击查看详情
+    $("table").on('click','#detail',function(){//$scope.this_row_id为当前行的_id
+        if($scope.this_row_id==undefined){
+            dhx_alert("未选中记录！")
+        }else {
+            window.location.href=detail_url+$scope.this_row_id//页面间传值直接在window.location.href后面加上就行
+        }
+    });
+
 
     //选中任何row列表
     myGrid._doClick=function(ev){

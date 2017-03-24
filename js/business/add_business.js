@@ -72,4 +72,8 @@ app.controller('myCtrl',function($scope,$http){
             })
         }
     }
+
+    $scope.back=function(){
+        window.location.href="business_list.html"
+    }
 });

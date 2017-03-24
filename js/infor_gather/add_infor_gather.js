@@ -118,4 +118,7 @@ app.controller('myCtrl',function($scope,$http){
             })
         }
     }
+    $scope.back=function(){
+        window.location.href="inforgather_list.html"
+    }
 });

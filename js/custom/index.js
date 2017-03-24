@@ -36,7 +36,7 @@ app.controller('myCtrl', function($scope,$http){
                         {id: "business", text: '出差信息',active:1 , width: 160},
                         {id: "infor_gather", text: "情报搜集", width: 160},
                         {id: "infor_guide", text: "信息指南",width: 160},
-                        {id: "self_infor", text: "个人中心", width: 160},
+                        {id: "selfinfor", text: "个人中心", width: 160},
                         {id: "about_us", text: "关于我们",width: 160},
                         {id: "feedback", text: "意见反馈", width: 160},
                         {id: "notice", text: "通知公告", width: 160}
@@ -45,7 +45,7 @@ app.controller('myCtrl', function($scope,$http){
                 //导航栏的分区
 
                 mySidebar_8 = myTabbar.tabs("placeholder").attachSidebar({
-                    width: 160,
+                    width: 200,
                     icons_path: "icons/icons_material/",
                     json: "business/business.json",
                     onload: function () {
@@ -54,17 +54,22 @@ app.controller('myCtrl', function($scope,$http){
                 });
 
                 mySidebar_1 = myTabbar.tabs("business").attachSidebar({
-                    width: 160,
+                    width: 200,
                     icons_path: "icons/icons_material/",
                     json: "business/business.json",
                     onload: function () {
                         mySidebar_1.cells("business_list").attachURL("business/business_list.html");
                     }
                 });
+                mySidebar_1.attachEvent("onSelect",function(id){
+                    if(id=="add_business"){
+                        mySidebar_1.cells("add_business").attachURL("business/add_business.html");
+                    }
+                })
 
 
                 mySidebar_2 = myTabbar.tabs("infor_gather").attachSidebar({
-                    width: 160,
+                    width: 200,
                     icons_path: "icons/icons_material/",
                     json: "infor_gather/infor_gather.json",
                     onload: function () {
@@ -72,10 +77,8 @@ app.controller('myCtrl', function($scope,$http){
                     }
                 });
                 mySidebar_2.attachEvent("onSelect",function(id){
-                    if( id =="infor_gather_list"){
-                        mySidebar_2.cells("infor_gather_list").attachURL("infor_gather/inforgather_list.html");
-                    }else if(id =="add_infor_gather"){
-                        mySidebar_2.cells("add_infor_gather").attachURL("infor_gather/add_inforgathe.html");
+                    if(id =="add_infor_gather" ){
+                        mySidebar_2.cells("add_infor_gather").attachURL("infor_gather/add_infor_gather.html");
                     }else if(id =="dongbei"){
                         localStorage.setItem("area_name","东北");
                         mySidebar_2.cells("dongbei").attachURL("infor_gather/given_area.html");
@@ -105,19 +108,27 @@ app.controller('myCtrl', function($scope,$http){
                     }
                 });
 
+
                 mySidebar_3 = myTabbar.tabs("infor_guide").attachSidebar({
-                    width: 160,
+                    width: 200,
                     icons_path: "icons/icons_material/",
                     json: "infor_guide/infor_guide.json",
                     onload: function () {
                         mySidebar_3.cells("infor_guide_list").attachURL("infor_guide/infor_guide_list.html");
-                        mySidebar_3.cells("like").attachURL("infor_guide/like.html");
                     }
                 });
-                mySidebar_4 = myTabbar.tabs("self_infor").attachSidebar({
-                    width: 160,
+                mySidebar_3.attachEvent("onSelect",function(id){
+                    if(id=="add_infor_guide"){
+                        mySidebar_3.cells("add_infor_guide").attachURL("infor_guide/add_infor_guide.html");
+                    }else if(id=="like"){
+                        mySidebar_3.cells("like").attachURL("infor_guide/like.html");
+                    }
+                })
+
+                mySidebar_4 = myTabbar.tabs("selfinfor").attachSidebar({
+                    width: 200,
                     icons_path: "icons/icons_material/",
-                    json: "self_infor/self_infor.json",
+                    json: "selfinfor/self_infor.json",
                     onload: function () {
                         mySidebar_4.cells("self_business").attachURL("selfinfor/self_business.html");
                     }
@@ -137,7 +148,7 @@ app.controller('myCtrl', function($scope,$http){
                 });
 
                 mySidebar_5 = myTabbar.tabs("about_us").attachSidebar({
-                    width: 160,
+                    width: 200,
                     icons_path: "icons/icons_material/",
                     json: "about_us/about_us.json",
                     onload: function () {
@@ -145,7 +156,7 @@ app.controller('myCtrl', function($scope,$http){
                     }
                 });
                 mySidebar_6 = myTabbar.tabs("feedback").attachSidebar({
-                    width: 160,
+                    width: 200,
                     icons_path: "icons/icons_material/",
                     json: "feedback/feedback.json",
                     onload: function () {
@@ -153,7 +164,7 @@ app.controller('myCtrl', function($scope,$http){
                     }
                 });
                 mySidebar_7 = myTabbar.tabs("notice").attachSidebar({
-                    width: 160,
+                    width: 200,
                     icons_path: "icons/icons_material/",
                     json: "notice/notice.json",
                     onload: function () {
@@ -165,7 +176,7 @@ app.controller('myCtrl', function($scope,$http){
     }
     $scope.login_out = function(){
         setCookie("token","");
-        window.location.href="../../../../mui workspace/miniui/login.html"
+        window.location.href="../../angular.js/baosteel_ng/login.html"
     }
 
 })

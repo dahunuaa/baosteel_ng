@@ -73,11 +73,22 @@
     </tr>
 </table>
 <div style="text-align: center">
-    <img style="max-width: 600px;height:auto" src={{img1}}>
-    <img style="max-width: 600px;height:auto" src={{img2}}>
-    <img style="max-width: 600px;height:auto" src={{img3}}>
+    <img style="max-width: 400px;height:auto" src={{img1}}>
+    <img style="max-width: 400px;height:auto" src={{img2}}>
+    <img style="max-width: 400px;height:auto" src={{img3}}>
 </div>
+<hr width="61%" />
+<div id="comment_area" style="text-align: center">
+    <span style="font-size: 30px" >评论区</span>
+    <hr width="61%" />
+    <dl id="comment_gridbox">
 
+    </dl>
+</div>
+<div id="comment_add"style="text-align: center">
+    <textarea type="text" id="com_text" style="width: 800px;height: 100px"></textarea>
+    <button class="btn" style="font-size: 20px;color: green;font-weight: bold;" ng-click="add_comment()">发表</button>
+</div>
 
 <p style="width: 100%;text-align: center"><button class="btn_blue"  onclick="JavaScript:history.go(-1);">返回</button></p>
 

@@ -1,6 +1,6 @@
 {items:[
       {id:"infor_gather_list",text:"情报列表",icon:"documents.png",selected:true},
-//      {id:"add_infor_gather",text:"新建情报搜集",icon:"add.png"},
+      {id:"add_infor_gather",text:"新建情报搜集",icon:"add.png"},
       {id:"dongbei",text:"东北区域",icon:"documents.png"},
       {id:"xinan",text:"西南区域",icon:"documents.png"},
       {id:"zhonghaiyou",text:"中海油区域",icon:"documents.png"},
