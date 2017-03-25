@@ -201,7 +201,7 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].add_time,
                             get_data[i].last_updated_time,
                             "<span style='margin: 0;padding: 0;font-size: 24px' class='icon-ios-eye' id='detail'></span>",
-                            "<span style='margin: 10px 20px 30px 40px ;padding:10px 20px 30px 40px;font-size: 24px' class='icon-ios-compose' id='comment'></span>"
+                            "<img src='../icons/icons_material/like.png' style='margin-left: 30px;' id='like'>"
                         ],i);
 
 

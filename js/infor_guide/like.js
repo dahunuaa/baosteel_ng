@@ -18,10 +18,10 @@ app.controller('myCtrl', function($scope,$http) {
             //建页
             myGrid = new dhtmlXGridObject('gridbox');
             myGrid.setImagePath("../dhtmlxSuite/sources/dhtmlxGrid/codebase/imgs/");//表格图标路径
-            myGrid.setHeader("编辑人,标题,类别,添加时间,最后编辑时间,详情");//设置表头
-            myGrid.setInitWidths("130,200,100,200,200,65");//设置表格初始宽度
-            myGrid.setColAlign("left,left,left,left,left,left");//数据显示位置
-            myGrid.setColTypes("ro,ro,ro,ro,ro,ro");//数据呈现类型
+            myGrid.setHeader("编辑人,标题,类别,添加时间,最后编辑时间,详情,取消收藏");//设置表头
+            myGrid.setInitWidths("130,200,100,200,200,65,100");//设置表格初始宽度
+            myGrid.setColAlign("left,left,left,left,left,left,left");//数据显示位置
+            myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro");//数据呈现类型
             myGrid.enableAutoWidth(true);
             myGrid.init();
 
@@ -48,6 +48,7 @@ app.controller('myCtrl', function($scope,$http) {
                             get_data[i].add_time,
                             get_data[i].last_updated_time,
                             "<span style='margin: 0;padding: 0;font-size: 30px' class='icon-ios-eye' id='detail' ></span>",
+                            "<img src='../icons/icons_material/undo.png' style='margin-left: 30px;' id='nolike'>"
                         ],i);
                     }
 
@@ -64,6 +65,37 @@ app.controller('myCtrl', function($scope,$http) {
             window.location.href=detail_url+$scope.this_row_id//页面间传值直接在window.location.href后面加上就行
         }
     });
+
+    $("table").on('click','#nolike',function(){
+        if($scope.this_row_id==undefined){
+            dhx_alert("未选中记录！")
+        }else{
+            dhtmlx.confirm({
+                text:"是否取消收藏？",
+                callback:function(result){
+                    if(result==true){
+                        $http({
+                            method:"put",
+                            url:basePath+"api/v1.0/like/alter",
+                            params:{
+                                "access_token":localStorage.getItem("token"),
+                                "user_id":localStorage.getItem("mobile"),
+                                "type":"inforguide",
+                                "like_id":$scope.this_row_id
+                            }
+                        }).success(function(res){
+                            if(res.response.success==1){
+                                dhx_alert("已经取消收藏")
+                                window.location.reload()
+                            }else{
+                                dhx_alert(res.response.return_code)
+                            }
+                        })
+                    }
+                }
+            })
+        }
+    })
 
     //选中任何row列表
     myGrid._doClick=function(ev){
