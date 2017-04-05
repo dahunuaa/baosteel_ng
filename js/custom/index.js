@@ -160,7 +160,7 @@ app.controller('myCtrl', function($scope,$http){
                     icons_path: "icons/icons_material/",
                     json: "feedback/feedback.json",
                     onload: function () {
-                        mySidebar_6.cells("add_feedback").attachURL("feedback/web_user.html");
+                        mySidebar_6.cells("add_feedback").attachURL("feedback/add_feedback.html");
                     }
                 });
                 mySidebar_7 = myTabbar.tabs("notice").attachSidebar({
