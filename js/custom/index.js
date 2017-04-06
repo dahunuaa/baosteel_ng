@@ -18,7 +18,7 @@ app.controller('myCtrl', function($scope,$http){
         var mySidebar_6;
         var mySidebar_7;
         var mySidebar_8;
-        var mySidebar_9;
+
 
         function init() {
             $scope.name = localStorage.getItem("name");
@@ -30,21 +30,54 @@ app.controller('myCtrl', function($scope,$http){
 
             function create() {
                 //声明导航栏
-                myTabbar = new dhtmlXTabBar({
-                    parent: "tabbarObj",
-                    tabs: [
-                        {id: "placeholder", text: '', active:1 ,width: 160},
-                        {id: "business", text: '出差信息',active:1 , width: 160},
-                        {id: "infor_gather", text: "情报搜集", width: 160},
-                        {id: "infor_guide", text: "信息指南",width: 160},
-                        {id: "selfinfor", text: "个人中心", width: 160},
-                        {id: "about_us", text: "关于我们",width: 160},
-                        {id: "feedback", text: "意见反馈", width: 160},
-                        {id: "notice", text: "通知公告", width: 160},
-                        {id: "report_download", text: "报表下载", width: 160},
-                        {id: "admin", text: "用户管理", width: 160}
-                    ]
-                });
+                if(localStorage.getItem("scope")=="admin"){
+                    myTabbar = new dhtmlXTabBar({
+                        parent: "tabbarObj",
+                        tabs: [
+                            {id: "placeholder", text: '', active:1 ,width: 160},
+                            {id: "business", text: '出差信息',active:1 , width: 160},
+                            {id: "infor_gather", text: "情报搜集", width: 160},
+                            {id: "infor_guide", text: "信息指南",width: 160},
+                            {id: "selfinfor", text: "个人中心", width: 160},
+                            {id: "about_us", text: "关于我们",width: 160},
+                            {id: "feedback", text: "意见反馈", width: 160},
+                            {id: "notice", text: "通知公告", width: 160},
+                            {id: "report_download", text: "报表下载", width: 160},
+                            {id: "admin", text: "用户管理", width: 160}
+                        ]
+                    });
+                    var mySidebar_9;
+
+                    mySidebar_9 = myTabbar.tabs("admin").attachSidebar({
+                        width: 200,
+                        icons_path: "icons/icons_material/",
+                        json: "admin/admin.json",
+                        onload: function () {
+                            mySidebar_9.cells("users_list").attachURL("admin/users_list.html");
+                        }
+                    });
+                    mySidebar_9.attachEvent("onSelect",function(id){
+                        if(id =="add_user"){
+                            mySidebar_9.cells("add_user").attachURL("admin/add_user.html");
+                        }
+                    });
+                }else{
+                    myTabbar = new dhtmlXTabBar({
+                        parent: "tabbarObj",
+                        tabs: [
+                            {id: "placeholder", text: '', active:1 ,width: 160},
+                            {id: "business", text: '出差信息',active:1 , width: 160},
+                            {id: "infor_gather", text: "情报搜集", width: 160},
+                            {id: "infor_guide", text: "信息指南",width: 160},
+                            {id: "selfinfor", text: "个人中心", width: 160},
+                            {id: "about_us", text: "关于我们",width: 160},
+                            {id: "feedback", text: "意见反馈", width: 160},
+                            {id: "notice", text: "通知公告", width: 160},
+                            {id: "report_download", text: "报表下载", width: 160},
+                        ]
+                    });
+                }
+
                 //导航栏的分区
 
                 mySidebar_8 = myTabbar.tabs("placeholder").attachSidebar({
@@ -189,19 +222,7 @@ app.controller('myCtrl', function($scope,$http){
                         mySidebar_8.cells("report_download").attachURL("report/report_download.html");
                     }
                 });
-                mySidebar_9 = myTabbar.tabs("admin").attachSidebar({
-                    width: 200,
-                    icons_path: "icons/icons_material/",
-                    json: "admin/admin.json",
-                    onload: function () {
-                        mySidebar_9.cells("users_list").attachURL("admin/users_list.html");
-                    }
-                });
-                mySidebar_9.attachEvent("onSelect",function(id){
-                    if(id =="add_user"){
-                        mySidebar_9.cells("add_user").attachURL("admin/add_user.html");
-                    }
-                });
+
             }
         }
     }
