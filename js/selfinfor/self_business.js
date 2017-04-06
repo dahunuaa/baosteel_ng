@@ -3,7 +3,7 @@ app.controller('myCtrl', function($scope,$http) {
 
     var get_url  ="api/v1.0/business?";//get数据接口
     var del_url  ="api/v1.0/business";//删除接口
-    var edit_url ="edit_business.html?";//点击详情跳转地址
+    var edit_url ="edit_business.html?";
     var detail_url = "../business/detail_business.html?";
 
     var myGrid;// 声明表格

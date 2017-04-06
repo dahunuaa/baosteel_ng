@@ -142,6 +142,8 @@ app.controller('myCtrl', function($scope,$http){
                         mySidebar_4.cells("self_inforgather").attachURL("selfinfor/self_inforgather.html");
                     }else if (id =="self_inforguide"){
                         mySidebar_4.cells("self_inforguide").attachURL("selfinfor/self_inforguide.html");
+                    }else if (id =="self_notice"){
+                        mySidebar_4.cells("self_notice").attachURL("selfinfor/self_notice.html");
                     }else if (id =="changepsw"){
                         mySidebar_4.cells("changepsw").attachURL("selfinfor/changepsw.html");
                     }
@@ -168,9 +170,14 @@ app.controller('myCtrl', function($scope,$http){
                     icons_path: "icons/icons_material/",
                     json: "notice/notice.json",
                     onload: function () {
-                        mySidebar_7.cells("notice_list").attachURL("notice/web_user.html");
+                        mySidebar_7.cells("notice_list").attachURL("notice/notice_list.html");
                     }
                 });
+                mySidebar_7.attachEvent("onSelect",function(id){
+                    if(id =="add_notice"){
+                        mySidebar_7.cells("add_notice").attachURL("notice/add_notice.html");
+                    }
+                })
             }
         }
     }
