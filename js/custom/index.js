@@ -18,6 +18,7 @@ app.controller('myCtrl', function($scope,$http){
         var mySidebar_6;
         var mySidebar_7;
         var mySidebar_8;
+        var mySidebar_9;
 
         function init() {
             $scope.name = localStorage.getItem("name");
@@ -39,7 +40,9 @@ app.controller('myCtrl', function($scope,$http){
                         {id: "selfinfor", text: "个人中心", width: 160},
                         {id: "about_us", text: "关于我们",width: 160},
                         {id: "feedback", text: "意见反馈", width: 160},
-                        {id: "notice", text: "通知公告", width: 160}
+                        {id: "notice", text: "通知公告", width: 160},
+                        {id: "report_download", text: "报表下载", width: 160},
+                        {id: "admin", text: "用户管理", width: 160}
                     ]
                 });
                 //导航栏的分区
@@ -177,7 +180,28 @@ app.controller('myCtrl', function($scope,$http){
                     if(id =="add_notice"){
                         mySidebar_7.cells("add_notice").attachURL("notice/add_notice.html");
                     }
-                })
+                });
+                mySidebar_8 = myTabbar.tabs("report_download").attachSidebar({
+                    width: 200,
+                    icons_path: "icons/icons_material/",
+                    json: "report/report.json",
+                    onload: function () {
+                        mySidebar_8.cells("report_download").attachURL("report/report_download.html");
+                    }
+                });
+                mySidebar_9 = myTabbar.tabs("admin").attachSidebar({
+                    width: 200,
+                    icons_path: "icons/icons_material/",
+                    json: "admin/admin.json",
+                    onload: function () {
+                        mySidebar_9.cells("users_list").attachURL("admin/users_list.html");
+                    }
+                });
+                mySidebar_9.attachEvent("onSelect",function(id){
+                    if(id =="add_user"){
+                        mySidebar_9.cells("add_user").attachURL("admin/add_user.html");
+                    }
+                });
             }
         }
     }
